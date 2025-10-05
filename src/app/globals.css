@@ -43,12 +43,14 @@
   --radius-xl: calc(var(--radius) + 4px);
 
   --color-bulgarian-rose-100: #3f2320;
+  --color-gainsboro-100: #e8e8e8;
   --color-dim-gray-100: #5f5f5f;
   --color-nero-100: #262626;
   --color-nero-200: #2c2c2c;
   --color-nero-300: #151515;
   --color-nero-400: #1b1b1b;
   --color-nobel-100: #9a9a9a;
+  --color-white-smoke-100: #f7f7f7;
 
   --inset-shadow-0-1-0: inset 0 1px 0 transparent;
 
