@@ -53,13 +53,13 @@ export default function Paynt() {
       </main>
       <section className="narrow-container max-w-232 space-y-3 py-2">
         <article className="flex items-center justify-center rounded-[1.5rem] bg-[url(/images/paynt/1-bg.jpg)] bg-cover pt-24 pb-25">
-          <img alt="Index page" className="w-7/10 rounded-[0.5rem]" src="/images/paynt/1.png" />
+          <img alt="Index page" className="w-7/10" src="/images/paynt/1.png" />
         </article>
-        <article className="flex items-center justify-center rounded-[1.5rem] bg-cover bg-white-smoke-100 pt-24 pb-25">
+        <article className="flex items-center justify-center rounded-[1.5rem] bg-white-smoke-100 pt-24 pb-25">
           <img alt="Other page" className="w-7/10" src="/images/paynt/2.png" />
         </article>
         <article className="flex items-center justify-center rounded-[1.5rem] bg-[url(/images/paynt/3-bg.jpg)] bg-cover pt-24 pb-25">
-          <img alt="Index page" className="w-7/10 rounded-[0.5rem]" src="/images/paynt/3.png" />
+          <img alt="Index page" className="w-7/10" src="/images/paynt/3.png" />
         </article>
       </section>
       <Projects />

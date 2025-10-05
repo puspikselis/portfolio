@@ -51,19 +51,19 @@ export default function Centus() {
       </main>
       <section className="narrow-container max-w-232 space-y-3 py-2">
         <article className="flex items-center justify-center rounded-[1.5rem] bg-[url(/images/centus/1-bg.jpg)] bg-cover pt-24 pb-25">
-          <img alt="Index page" className="w-7/10 rounded-[0.5rem]" src="/images/centus/1.jpg" />
+          <img alt="Index page" className="w-7/10" src="/images/centus/1.jpg" />
         </article>
-        <article className="flex items-center justify-center rounded-[1.5rem] bg-cover bg-white-smoke-100 pt-24 pb-25">
+        <article className="flex items-center justify-center rounded-[1.5rem] bg-white-smoke-100 pt-24 pb-25">
           <img
             alt="Other page"
             className="w-7/10 rounded-[0.5rem] border border-gainsboro-100"
             src="/images/centus/2.jpg"
           />
         </article>
-        <article className="flex items-center justify-center rounded-[1.5rem] bg-cover bg-white-smoke-100 pt-24 pb-25">
+        <article className="flex items-center justify-center rounded-[1.5rem] bg-white-smoke-100 pt-24 pb-25">
           <img alt="Other page" className="w-7/10" src="/images/centus/3.png" />
         </article>
-        <article className="flex items-center justify-center rounded-[1.5rem] bg-cover bg-white-smoke-100 pt-24 pb-25">
+        <article className="flex items-center justify-center rounded-[1.5rem] bg-white-smoke-100 pt-24 pb-25">
           <img
             alt="Other page"
             className="w-7/10 rounded-[0.5rem] border border-gainsboro-100"
@@ -71,7 +71,7 @@ export default function Centus() {
           />
         </article>
         <article className="flex items-center justify-center rounded-[1.5rem] bg-[url(/images/centus/5-bg.jpg)] bg-cover pt-24 pb-25">
-          <img alt="Index page" className="w-7/10 rounded-[0.5rem]" src="/images/centus/5.png" />
+          <img alt="Index page" className="w-7/10" src="/images/centus/5.png" />
         </article>
       </section>
       <Projects />

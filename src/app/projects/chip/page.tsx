@@ -59,7 +59,7 @@ export default function Chip() {
           <img alt="Other page" className="w-7/10" src="/images/chip/4.png" />
         </article>
         <article className="flex items-center justify-center rounded-[1.5rem] bg-[url(/images/centus/5-bg.jpg)] bg-cover pt-24 pb-25">
-          <img alt="Index page" className="w-7/10 rounded-[0.5rem]" src="/images/centus/5.png" />
+          <img alt="Index page" className="w-7/10" src="/images/centus/5.png" />
         </article>
       </section>
       <Projects />
