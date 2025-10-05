@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+
 import { Projects } from '@/components/projects';
 
 const tags = [
@@ -9,6 +11,11 @@ const tags = [
   'Handoff',
   'Design QA',
 ];
+
+export const metadata: Metadata = {
+  description: 'Localization',
+  title: 'Centus - Lead designer',
+};
 
 export default function Centus() {
   return (
