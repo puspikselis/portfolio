@@ -42,14 +42,19 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
+  --color-bulgarian-rose-100: #3f2320;
   --color-dim-gray-100: #5f5f5f;
   --color-nero-100: #262626;
+  --color-nero-200: #2c2c2c;
+  --color-nero-300: #151515;
   --color-nobel-100: #9a9a9a;
 
   --inset-shadow-0-1-0: inset 0 1px 0 transparent;
 
   --text-12: 0.75rem;
   --text-13: 0.8125rem;
+  --text-15: 0.9375rem;
+  --text-28: 1.75rem;
 }
 
 :root {
@@ -123,6 +128,16 @@
 
 @layer base {
   body {
-    @apply bg-black text-nobel-100 -tracking-[0.03em];
+    @apply bg-black text-nobel-100 -tracking-[0.03em] antialiased;
+  }
+}
+
+@layer components {
+  .narrow-container {
+    @apply mx-auto max-w-144 px-4;
+  }
+
+  .link-overlay {
+    @apply before:absolute before:inset-0 before:block before:content-[''];
   }
 }
