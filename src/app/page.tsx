@@ -1,9 +1,10 @@
+import { Businesses } from '@/components/businesses';
 import { Projects } from '@/components/projects';
 
 export default function Home() {
   return (
-    <>
-      <main className="narrow-container mb-33 space-y-4">
+    <div className="space-y-33 pt-38 pb-78">
+      <main className="narrow-container space-y-4">
         <h3 className="-tracking-[0.01em] font-medium text-28/10 text-white">
           Designer turning ideas into products people actually enjoy using.
         </h3>
@@ -14,6 +15,7 @@ export default function Home() {
         <p className="-tracking-[0.01em] font-medium text-28/10">Let’s work together!</p>
       </main>
       <Projects />
-    </>
+      <Businesses />
+    </div>
   );
 }

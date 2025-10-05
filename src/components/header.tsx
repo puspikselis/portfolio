@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 
 export function Header() {
   return (
-    <header className="flex items-center justify-between p-8">
+    <header className="fixed inset-x-0 top-0 z-1 flex items-center justify-between bg-linear-to-b from-50% from-black to-transparent p-8">
       <div className="flex gap-4">
         <Avatar className="size-9 rounded-[0.75rem]">
           <AvatarImage className="rounded-none" src="/images/KK.png" />

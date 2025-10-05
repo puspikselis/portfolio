@@ -11,7 +11,7 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
       <div className="relative flex items-center gap-4">
         <Avatar
           className="size-12 rounded-[0.75rem] bg-(--color)"
-          style={{ '--color': project.color || '#1D1D1D' } as React.CSSProperties}
+          style={{ '--color': project.color || '#1d1d1d' } as React.CSSProperties}
         >
           <AvatarImage src={project.image} />
           <AvatarFallback className="bg-transparent text-15 text-white/20">
