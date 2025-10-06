@@ -6,7 +6,7 @@ export const businesses = [
         label: 'App Store',
       },
       {
-        href: 'https://play.google.com/store/apps/details?id=com.wisp.app',
+        href: 'https://play.google.com/store/apps/details?id=com.getwisp.wisp',
         label: 'PlayStore',
       },
     ],
