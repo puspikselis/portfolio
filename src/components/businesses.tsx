@@ -34,7 +34,7 @@ function BusinessCard({ business }: { business: (typeof businesses)[number] }) {
             {business.buttons.map((button) => (
               <Button
                 asChild
-                className="inner-shadow-0-1-0 inner-shadow-white/4 h-9 rounded-full bg-nero-100 px-5 font-semibold text-12 text-white"
+                className="inset-shadow-0-1-0 inset-shadow-white/8 h-9 rounded-full bg-nero-100 px-5 font-semibold text-12 text-white"
                 key={button.label}
               >
                 <a href={button.href} rel="noopener noreferrer" target="_blank">

@@ -16,7 +16,7 @@ export function Header() {
           <h2 className="font-medium text-12/4 text-dim-gray-100">Designer</h2>
         </div>
       </Link>
-      <Button className="inset-shadow-0-1-0 inset-shadow-white/4 h-9 rounded-full bg-nero-100 px-5 font-semibold text-12 text-white">
+      <Button className="inset-shadow-0-1-0 inset-shadow-white/8 h-9 rounded-full bg-nero-100 px-5 font-semibold text-12 text-white">
         Contact
       </Button>
     </header>

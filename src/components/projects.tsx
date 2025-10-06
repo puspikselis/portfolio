@@ -33,7 +33,7 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
         </div>
         <Button
           asChild={!!project.slug}
-          className="inner-shadow-0-1-0 inner-shadow-white/4 ml-auto h-9 rounded-full bg-nero-100 px-5 font-semibold text-12 text-white disabled:bg-nero-300 disabled:text-dim-gray-100"
+          className="inset-shadow-0-1-0 inset-shadow-white/8 ml-auto h-9 rounded-full bg-nero-100 px-5 font-semibold text-12 text-white disabled:bg-nero-300 disabled:text-dim-gray-100"
           disabled={!project.slug}
         >
           {project.slug ? (
