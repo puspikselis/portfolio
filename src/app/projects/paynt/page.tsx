@@ -62,7 +62,7 @@ export default function Paynt() {
           <img alt="Index page" className="w-7/10" src="/images/paynt/3.png" />
         </article>
       </section>
-      <Projects />
+      <Projects excludeSlug="paynt" />
     </div>
   );
 }

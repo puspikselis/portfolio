@@ -74,7 +74,7 @@ export default function Centus() {
           <img alt="Index page" className="w-7/10" src="/images/centus/5.png" />
         </article>
       </section>
-      <Projects />
+      <Projects excludeSlug="centus" />
     </div>
   );
 }

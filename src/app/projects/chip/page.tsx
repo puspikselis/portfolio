@@ -62,7 +62,7 @@ export default function Chip() {
           <img alt="Index page" className="w-7/10" src="/images/centus/5.png" />
         </article>
       </section>
-      <Projects />
+      <Projects excludeSlug="chip" />
     </div>
   );
 }

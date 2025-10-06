@@ -4,7 +4,7 @@ import { businesses } from '@/data/businesses';
 
 function BusinessCard({ business }: { business: (typeof businesses)[number] }) {
   return (
-    <div className="space-y-6 not-first:before:my-7 not-first:before:block not-first:before:h-px not-first:before:w-9/10 not-first:before:bg-nero-400 not-first:before:content-['']">
+    <div className="space-y-6 not-first:before:my-7 not-first:before:block not-first:before:h-px not-first:before:w-full not-first:before:bg-nero-400 not-first:before:content-['']">
       <p className="font-medium text-13/4 text-dim-gray-100">{business.year}</p>
       <div className="flex items-center gap-4">
         <Avatar
@@ -24,7 +24,11 @@ function BusinessCard({ business }: { business: (typeof businesses)[number] }) {
                 className="flex items-center not-first:before:mx-2 not-first:before:block not-first:before:size-1 not-first:before:bg-nero-100 not-first:before:content-['']"
                 key={tag}
               >
-                <span className={`-tracking-[0.02em] text-15/6 ${index > 0 ? "text-dim-gray-100" : ""}`}>{tag}</span>
+                <span
+                  className={`-tracking-[0.02em] text-15/6 ${index > 0 ? 'text-dim-gray-100' : ''}`}
+                >
+                  {tag}
+                </span>
               </li>
             ))}
           </ul>
@@ -32,16 +36,17 @@ function BusinessCard({ business }: { business: (typeof businesses)[number] }) {
         {business.buttons.length > 0 && (
           <ul className="ml-auto flex flex-col items-center gap-2 md:flex-row">
             {business.buttons.map((button) => (
-              <Button
-                asChild
-                className="inset-shadow-0-1-0 inset-shadow-white/8 h-9 rounded-full bg-nero-100 px-5 font-semibold text-12 text-white"
-                key={button.label}
-              >
-                <a href={button.href} rel="noopener noreferrer" target="_blank">
-                  {button.label}
-                  <span className="text-dim-gray-100"> ↗</span>
-                </a>
-              </Button>
+              <li key={button.label}>
+                <Button
+                  asChild
+                  className="inset-shadow-0-1-0 inset-shadow-white/8 h-9 rounded-full bg-nero-100 px-5 font-semibold text-12 text-white"
+                >
+                  <a href={button.href} rel="noopener noreferrer" target="_blank">
+                    {button.label}
+                    {/* <span className="text-dim-gray-100">↗</span> */}
+                  </a>
+                </Button>
+              </li>
             ))}
           </ul>
         )}

@@ -26,7 +26,11 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
                 className="flex items-center not-first:before:mx-2 not-first:before:block not-first:before:size-1 not-first:before:bg-nero-100 not-first:before:content-['']"
                 key={tag}
               >
-                <span className={`-tracking-[0.02em] text-15/6 ${index > 0 ? "text-dim-gray-100" : ""}`}>{tag}</span>
+                <span
+                  className={`-tracking-[0.02em] text-15/6 ${index > 0 ? 'text-dim-gray-100' : ''}`}
+                >
+                  {tag}
+                </span>
               </li>
             ))}
           </ul>
@@ -49,10 +53,14 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
   );
 }
 
-export function Projects() {
+export function Projects({ excludeSlug }: { excludeSlug?: string } = {}) {
+  const filteredProjects = excludeSlug
+    ? projects.filter((project) => project.slug && project.slug !== excludeSlug)
+    : projects;
+
   return (
     <section className="narrow-container space-y-14 py-2">
-      {projects.map((project) => (
+      {filteredProjects.map((project) => (
         <ProjectCard key={project.id} project={project} />
       ))}
     </section>
