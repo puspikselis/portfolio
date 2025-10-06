@@ -2,10 +2,21 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { businesses } from '@/data/businesses';
 
-function BusinessCard({ business }: { business: (typeof businesses)[number] }) {
+function BusinessCard({
+  business,
+  isFirst,
+}: {
+  business: (typeof businesses)[number];
+  isFirst?: boolean;
+}) {
   return (
     <div className="space-y-6 not-first:before:my-7 not-first:before:block not-first:before:h-px not-first:before:w-full not-first:before:bg-nero-400 not-first:before:content-['']">
-      <p className="font-medium text-13/4 text-dim-gray-100">{business.year}</p>
+      <p
+        className="font-medium text-13/4 text-dim-gray-100"
+        data-align-target={isFirst ? 'true' : undefined}
+      >
+        {business.year}
+      </p>
       <div className="flex items-center gap-4">
         <Avatar
           className="size-12 rounded-[0.75rem] bg-(--color)"
@@ -39,7 +50,6 @@ function BusinessCard({ business }: { business: (typeof businesses)[number] }) {
                 >
                   <a href={button.href} rel="noopener noreferrer" target="_blank">
                     {button.label}
-                    {/* <span className="text-dim-gray-100">↗</span> */}
                   </a>
                 </Button>
               </li>
@@ -55,10 +65,11 @@ export function Businesses() {
   return (
     <section
       className="narrow-container inset-shadow-0-1-0 inset-shadow-white/4 max-w-152 bg-nero-300 py-8 md:rounded-[1.5rem] md:px-8"
+      data-color="#44a1ff"
       data-title="Side projects"
     >
-      {businesses.map((business) => (
-        <BusinessCard business={business} key={business.id} />
+      {businesses.map((business, index) => (
+        <BusinessCard business={business} isFirst={index === 0} key={business.id} />
       ))}
     </section>
   );

@@ -4,10 +4,21 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { projects } from '@/data/projects';
 
-function ProjectCard({ project }: { project: (typeof projects)[number] }) {
+function ProjectCard({
+  project,
+  isFirst,
+}: {
+  project: (typeof projects)[number];
+  isFirst?: boolean;
+}) {
   return (
     <div className="space-y-6">
-      <p className="font-medium text-13/4 text-dim-gray-100">{project.year}</p>
+      <p
+        className="font-medium text-13/4 text-dim-gray-100"
+        data-align-target={isFirst ? 'true' : undefined}
+      >
+        {project.year}
+      </p>
       <div className="relative flex items-center gap-4">
         <Avatar
           className="size-12 rounded-[0.75rem] bg-(--color)"
@@ -55,9 +66,9 @@ export function Projects({ excludeSlug }: { excludeSlug?: string } = {}) {
     : projects;
 
   return (
-    <section className="narrow-container space-y-14 py-2" data-title="Projects">
-      {filteredProjects.map((project) => (
-        <ProjectCard key={project.id} project={project} />
+    <section className="narrow-container space-y-14 py-2" data-color="#4CAF50" data-title="Projects">
+      {filteredProjects.map((project, index) => (
+        <ProjectCard isFirst={index === 0} key={project.id} project={project} />
       ))}
     </section>
   );

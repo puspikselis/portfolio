@@ -1,98 +1,201 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import { cn } from '@/lib/utils';
 
+type Config = { color: string; description: string; title: string };
+
+const DEFAULT_STICKY_TOP_FALLBACK = 160;
+const DEFAULT_DASH = '#5f5f5f';
+const HYSTERESIS = 4;
+
 export function FloatingThingy() {
-  const [config, setConfig] = useState({
+  const [config, setConfig] = useState<Config>({
     color: '',
     description: '',
     title: '',
   });
+
   const floatingRef = useRef<HTMLDivElement>(null);
-  const elementsRef = useRef<Element[]>([]);
+  const rafRef = useRef<number | undefined>(undefined);
+  const lastSigRef = useRef('');
+  const lastOffsetRef = useRef(0);
+  const stickyTopRef = useRef<number>(DEFAULT_STICKY_TOP_FALLBACK);
+  const elementsRef = useRef<HTMLElement[]>([]);
+  const updateActiveElementRef = useRef<() => void>(() => {});
+
+  const readStickyTop = useCallback(() => {
+    const el = floatingRef.current;
+    if (!el) return;
+    const topPx = parseFloat(getComputedStyle(el).top || `${DEFAULT_STICKY_TOP_FALLBACK}`);
+    if (!Number.isNaN(topPx)) stickyTopRef.current = topPx;
+  }, []);
+
+  const collectElements = useCallback(() => {
+    elementsRef.current = Array.from(document.querySelectorAll<HTMLElement>('[data-title]'));
+  }, []);
+
+  useLayoutEffect(() => {
+    collectElements();
+    readStickyTop();
+  }, [collectElements, readStickyTop]);
 
   useEffect(() => {
-    // Find all elements with data-title attribute
-    const elements = Array.from(document.querySelectorAll('[data-title]'));
-    elementsRef.current = elements;
+    collectElements();
 
-    if (elements.length === 0) {
-      return;
-    }
+    const mo = new MutationObserver(() => {
+      collectElements();
+      requestAnimationFrame(() => updateActiveElementRef.current?.());
+    });
 
-    // If only one element, set it and return
-    if (elements.length === 1) {
-      const element = elements[0];
-      setConfig({
-        color: element.getAttribute('data-color') || '',
-        description: element.getAttribute('data-description') || '',
-        title: element.getAttribute('data-title') || '',
-      });
-      return;
-    }
+    mo.observe(document.body, {
+      attributeFilter: ['data-title', 'data-description', 'data-color'],
+      attributes: true,
+      childList: true,
+      subtree: true,
+    });
 
-    // Multiple elements - track scroll position
+    return () => mo.disconnect();
+  }, [collectElements]);
+
+  useEffect(() => {
+    const el = floatingRef.current;
+    if (!el || typeof ResizeObserver === 'undefined') return;
+    const ro = new ResizeObserver(() => readStickyTop());
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [readStickyTop]);
+
+  useEffect(() => {
+    const readAttrs = (el: HTMLElement) => {
+      const ds = el.dataset as Record<string, string | undefined>;
+      return {
+        color: ds.color || '',
+        description: ds.description || '',
+        title: ds.title || '',
+      };
+    };
+
+    const updateConfig = (el: HTMLElement) => {
+      const { title, description, color } = readAttrs(el);
+      const sig = `${title}|${description}|${color}`;
+      if (lastSigRef.current === sig) return;
+      setConfig({ color, description, title });
+      lastSigRef.current = sig;
+    };
+
     const updateActiveElement = () => {
-      if (!floatingRef.current) return;
+      const host = floatingRef.current;
+      const elements = elementsRef.current;
+      if (!host) return;
 
-      const floatingTop = floatingRef.current.getBoundingClientRect().top;
+      if (elements.length === 0) {
+        if (lastSigRef.current !== '') {
+          setConfig({ color: '', description: '', title: '' });
+          lastSigRef.current = '';
+        }
+        return;
+      }
 
-      // Find element that most recently crossed the top
-      // We want the last element whose top is above or at the FloatingThingy position
-      let activeElement: Element | null = null;
+      const stickyTop = stickyTopRef.current;
+      const viewportH = window.innerHeight;
+      const scrollBottom = window.scrollY + viewportH;
+      const docH = document.documentElement.scrollHeight;
+      const atBottom = Math.ceil(scrollBottom) >= Math.floor(docH);
 
-      for (const element of elements) {
-        const rect = element.getBoundingClientRect();
+      let activeEl: HTMLElement | null = null;
+      let offset = 0;
 
-        // If element's top is above or at the FloatingThingy top
-        if (rect.top <= floatingTop) {
-          activeElement = element;
-        } else {
-          // Once we find an element below, we stop
-          break;
+      if (atBottom) {
+        for (let i = elements.length - 1; i >= 0; i--) {
+          const rect = elements[i].getBoundingClientRect();
+          if (rect.top < viewportH && rect.bottom > 0) {
+            activeEl = elements[i];
+
+            const alignTarget = activeEl.querySelector<HTMLElement>('[data-align-target]');
+            if (alignTarget) {
+              const tRect = alignTarget.getBoundingClientRect();
+              if (tRect.top > stickyTop) offset = tRect.top - stickyTop;
+            } else if (rect.top > stickyTop) {
+              offset = rect.top - stickyTop;
+            }
+            break;
+          }
+        }
+      } else {
+        const floatingTop = host.getBoundingClientRect().top;
+
+        for (const el of elements) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= floatingTop - HYSTERESIS && rect.bottom > floatingTop + HYSTERESIS) {
+            activeEl = el;
+            break;
+          }
+        }
+
+        if (!activeEl) {
+          for (const el of elements) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= floatingTop) activeEl = el;
+            else break;
+          }
         }
       }
 
-      // Use first element as default if none crossed yet
-      if (!activeElement && elements.length > 0) {
-        activeElement = elements[0];
-      }
+      activeEl = activeEl || elements[0];
 
-      if (activeElement) {
-        setConfig({
-          color: activeElement.getAttribute('data-color') || '',
-          description: activeElement.getAttribute('data-description') || '',
-          title: activeElement.getAttribute('data-title') || '',
-        });
+      if (offset !== lastOffsetRef.current) {
+        host.style.transform = `translate3d(0, ${offset}px, 0)`;
+        lastOffsetRef.current = offset;
       }
+      if (activeEl) updateConfig(activeEl);
     };
 
-    // Initial update
-    updateActiveElement();
+    updateActiveElementRef.current = updateActiveElement;
 
-    // Listen to scroll events
-    window.addEventListener('scroll', updateActiveElement, { passive: true });
-    window.addEventListener('resize', updateActiveElement, { passive: true });
+    const onScroll = () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      rafRef.current = requestAnimationFrame(updateActiveElement);
+    };
+
+    const onResize = () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      rafRef.current = requestAnimationFrame(() => {
+        readStickyTop();
+        updateActiveElement();
+      });
+    };
+
+    updateActiveElement();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize);
 
     return () => {
-      window.removeEventListener('scroll', updateActiveElement);
-      window.removeEventListener('resize', updateActiveElement);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onResize);
     };
-  }, []);
+  }, [readStickyTop]);
+
+  interface CSSVars extends React.CSSProperties {
+    ['--dash-color']?: string;
+  }
+  const style: CSSVars = { '--dash-color': config.color || DEFAULT_DASH };
 
   return (
     <div
+      aria-atomic="true"
+      aria-live="polite"
       className={cn(
-        'color-white sticky top-40 z-1 max-w-64 space-y-2 pl-24',
+        'sticky top-40 z-10 max-w-[16rem] space-y-2 pl-24 transition-transform duration-300 ease-out will-change-transform motion-reduce:transform-none motion-reduce:transition-none',
         config.title &&
           'before:absolute before:top-2 before:left-0 before:block before:h-px before:w-8 before:bg-nero-500 before:content-[""]',
         config.title &&
-          'after:absolute after:top-2 after:left-12 after:block after:h-px after:w-8 after:bg-(--dash-color) after:transition-colors after:content-[""]',
+          'after:absolute after:top-2 after:left-12 after:block after:h-px after:w-8 after:bg-[var(--dash-color)] after:transition-colors after:content-[""]',
       )}
       ref={floatingRef}
-      style={{ '--dash-color': config.color || '#5f5f5f' } as React.CSSProperties}
+      style={style}
     >
       {config.title && <h6 className="font-medium text-13/4 text-white">{config.title}</h6>}
       {config.description && (
