@@ -25,7 +25,7 @@ export default function RootLayout({
     >
       <body className="relative">
         <GridOverlay />
-        <div className="mx-auto max-w-404 border-nero-500 border-r border-l">
+        <div className="relative mx-auto max-w-404 border-nero-500 border-r border-l">
           <Header />
           {children}
         </div>

@@ -53,7 +53,10 @@ function BusinessCard({ business }: { business: (typeof businesses)[number] }) {
 
 export function Businesses() {
   return (
-    <section className="narrow-container inset-shadow-0-1-0 inset-shadow-white/4 max-w-152 bg-nero-300 py-8 md:rounded-[1.5rem] md:px-8">
+    <section
+      className="narrow-container inset-shadow-0-1-0 inset-shadow-white/4 max-w-152 bg-nero-300 py-8 md:rounded-[1.5rem] md:px-8"
+      data-title="Side projects"
+    >
       {businesses.map((business) => (
         <BusinessCard business={business} key={business.id} />
       ))}

@@ -55,7 +55,7 @@ export function Projects({ excludeSlug }: { excludeSlug?: string } = {}) {
     : projects;
 
   return (
-    <section className="narrow-container space-y-14 py-2">
+    <section className="narrow-container space-y-14 py-2" data-title="Projects">
       {filteredProjects.map((project) => (
         <ProjectCard key={project.id} project={project} />
       ))}
