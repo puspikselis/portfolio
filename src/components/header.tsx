@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 
 export function Header() {
   return (
-    <header className="fixed inset-x-0 top-0 z-1 flex items-center justify-between p-8">
+    <header className="sticky top-0 z-1 flex items-center justify-between px-12 py-8">
       <Link className="flex gap-4" href="/">
         <Avatar className="size-9 rounded-[0.75rem]">
           <AvatarImage className="rounded-none" src="/images/KK.png" />
