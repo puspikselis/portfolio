@@ -19,12 +19,12 @@ function BusinessCard({ business }: { business: (typeof businesses)[number] }) {
             {business.title}
           </h4>
           <ul className="flex">
-            {business.tags.map((tag) => (
+            {business.tags.map((tag, index) => (
               <li
                 className="flex items-center not-first:before:mx-2 not-first:before:block not-first:before:size-1 not-first:before:bg-nero-100 not-first:before:content-['']"
                 key={tag}
               >
-                {tag}
+                <span className={`-tracking-[0.02em] text-15/6 ${index > 0 ? "text-dim-gray-100" : ""}`}>{tag}</span>
               </li>
             ))}
           </ul>

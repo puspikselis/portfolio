@@ -21,12 +21,12 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
         <div className="space-y-1">
           <h4 className="-tracking-[0.02em] font-semibold text-15/6 text-white">{project.title}</h4>
           <ul className="flex">
-            {project.tags.map((tag) => (
+            {project.tags.map((tag, index) => (
               <li
                 className="flex items-center not-first:before:mx-2 not-first:before:block not-first:before:size-1 not-first:before:bg-nero-100 not-first:before:content-['']"
                 key={tag}
               >
-                {tag}
+                <span className={`-tracking-[0.02em] text-15/6 ${index > 0 ? "text-dim-gray-100" : ""}`}>{tag}</span>
               </li>
             ))}
           </ul>
