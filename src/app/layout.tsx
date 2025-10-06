@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
+import { GridOverlay } from '@/components/grid-overlay';
 import { Header } from '@/components/header';
 
 import './globals.css';
@@ -22,7 +23,8 @@ export default function RootLayout({
       lang="en"
       style={{ '--default-font-family': inter.style.fontFamily } as React.CSSProperties}
     >
-      <body>
+      <body className="relative">
+        <GridOverlay />
         <Header />
         {children}
       </body>
