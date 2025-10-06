@@ -37,7 +37,7 @@ export default function Chip() {
         <ul className="mt-11 flex flex-wrap gap-2">
           {tags.map((tag) => (
             <li
-              className="inner-shadow-0-1-0 inner-shadow-white/4 flex h-9 items-center rounded-full bg-nero-300 px-5 font-medium text-13/4 text-white"
+              className="inset-shadow-0-1-0 inset-shadow-white/4 flex h-9 items-center rounded-full bg-nero-300 px-5 font-medium text-13/4 text-white"
               key={tag}
             >
               {tag}
