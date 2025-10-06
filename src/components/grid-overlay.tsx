@@ -48,13 +48,16 @@ export function GridOverlay() {
       />
 
       {/* 12 columns (64px width, 32px gutter) - red 10% centered */}
-      <div
-        className="absolute inset-0 min-h-full bg-[length:1120px_100%] bg-center"
-        style={{
-          backgroundImage:
-            'repeating-linear-gradient(90deg, rgb(239 68 68 / 0.1) 0px, rgb(239 68 68 / 0.1) 64px, transparent 64px, transparent 96px)',
-        }}
-      />
+      <div className="absolute inset-0 flex min-h-full justify-center">
+        <div
+          className="h-full bg-[length:1120px_100%]"
+          style={{
+            backgroundImage:
+              'repeating-linear-gradient(90deg, rgb(239 68 68 / 0.1) 0px, rgb(239 68 68 / 0.1) 64px, transparent 64px, transparent 96px)',
+            width: '1120px',
+          }}
+        />
+      </div>
 
       {/* 16px grid - green 20% */}
       <div
