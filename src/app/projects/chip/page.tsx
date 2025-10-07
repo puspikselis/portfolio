@@ -23,20 +23,22 @@ export default function Chip() {
     <>
       <FloatingThingy />
       <div className="space-y-33 pt-15 pb-86">
-        <main className="narrow-container" data-color="#00d2b2" data-title="Intro">
-          <div className="space-y-4">
+        <main className="narrow-container" data-color="var(--color-teal-100)" data-title="Intro">
+          <div>
             <p className="font-medium text-13/4 text-dim-gray-100">2018</p>
-            <h3 className="-tracking-[0.01em] font-medium text-28/10 text-white">Chip</h3>
-            <p className="-tracking-[0.02em] text-15/7 text-nobel-100">
-              Chip is an automated savings app that connects to your bank, analyzes spending, and
-              moves affordable amounts into savings automatically.
-            </p>
-            <p className="-tracking-[0.02em] text-15/7 text-nobel-100">
-              At Chip I set up design processes, led the 2.0 rebrand, and designed the iOS/Android
-              apps with conversational UX. I also owned the marketing site and launch assets,
-              partnering with business and engineering to keep decisions customer-first and
-              testable.
-            </p>
+            <h3 className="-tracking-[0.01em] mt-2 font-medium text-28/10 text-white">Chip</h3>
+            <div className="mt-4 space-y-4">
+              <p className="-tracking-[0.02em] text-15/7 text-nobel-100">
+                Chip is an automated savings app that connects to your bank, analyzes spending, and
+                moves affordable amounts into savings automatically.
+              </p>
+              <p className="-tracking-[0.02em] text-15/7 text-nobel-100">
+                At Chip I set up design processes, led the 2.0 rebrand, and designed the iOS/Android
+                apps with conversational UX. I also owned the marketing site and launch assets,
+                partnering with business and engineering to keep decisions customer-first and
+                testable.
+              </p>
+            </div>
           </div>
           <ul className="mt-11 flex flex-wrap gap-2">
             {tags.map((tag) => (

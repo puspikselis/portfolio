@@ -12,12 +12,12 @@ export function ArrowTopRightCircle() {
         <g filter="url(#filter0_i_162_2827)">
           <path
             d="M0 7C0 3.13401 3.13401 0 7 0C10.866 0 14 3.13401 14 7C14 10.866 10.866 14 7 14C3.13401 14 0 10.866 0 7Z"
-            fill="#5F5F5F"
+            fill="var(--color-dim-gray-100)"
           />
         </g>
         <path
           d="M4.66699 9.33365L9.33366 4.66699M9.33366 4.66699H5.44477M9.33366 4.66699V8.55588"
-          stroke="#262626"
+          stroke="var(--color-nero-100)"
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth="1.5"

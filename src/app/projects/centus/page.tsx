@@ -3,48 +3,39 @@ import type { Metadata } from 'next';
 import { FloatingThingy } from '@/components/floating-thingy';
 import { Projects } from '@/components/projects';
 
-const tags = [
-  'Product design',
-  'Design leadership',
-  'Design systems',
-  'UX/UI Design',
-  'Prototyping',
-  'Handoff',
-  'Design QA',
-];
+import { images, tags } from './data';
 
 export const metadata: Metadata = {
-  description: 'Localization',
-  title: 'Centus - Lead designer',
+  title: 'Centus - Lead Designer | Kristaps Krūze',
+  description: 'Centus is a localization-management platform that helps teams ship multilingual products faster. As Lead Designer, I led end-to-end product work from concept to launch, defining core information architecture, translation workflows, and collaboration patterns.',
 };
 
 export default function Centus() {
   return (
     <>
       <FloatingThingy />
-      <div className="space-y-33 pt-15 pb-86">
-        <main className="narrow-container">
-          <div className="space-y-4">
+      <div className="pt-15 pb-80">
+        <main className="narrow-container" data-color="var(--color-dim-gray-100)" data-title="Intro">
+          <div>
             <p className="font-medium text-13/4 text-dim-gray-100">2023 - 2025</p>
-            <h3 className="-tracking-[0.01em] font-medium text-28/10 text-white">Centus</h3>
-            <p className="-tracking-[0.02em] text-15/7 text-nobel-100">
-              Centus is a localization-management platform that streamlines translations so teams
-              can ship multi-language products faster.
-            </p>
-            <p className="-tracking-[0.02em] text-15/7 text-nobel-100">
-              As lead product designer, I took Centus from concept to launch - defining the core IA,
-              translation workflows, roles/permissions, and collaboration patterns - while also
-              designing integrations with Figma and common file formats to fold localization into
-              the build pipeline.
-            </p>
-            <p className="-tracking-[0.02em] text-15/7 text-nobel-100">
-              I turned localization from an ad-hoc task into a predictable, scalable system.
-            </p>
+            <h3 className="-tracking-[0.01em] mt-2 font-medium text-28/10 text-white">Centus</h3>
+            <div className="mt-4 space-y-4">
+              <p className="-tracking-[0.02em] text-15/7 text-nobel-100">
+                Centus is a localization-management platform that helps teams ship multilingual
+                products faster.
+              </p>
+              <p className="-tracking-[0.02em] text-15/7 text-nobel-100">
+                As Lead Designer, I led end-to-end product work from concept to launch. I defined
+                the core information architecture, translation workflows, roles and permissions, and
+                collaboration patterns, and I designed integrations with Figma and GitHub. I also
+                led designers producing marketing materials and illustrations.
+              </p>
+            </div>
           </div>
           <ul className="mt-11 flex flex-wrap gap-2">
             {tags.map((tag) => (
               <li
-                className="inset-shadow-0-1-0 inset-shadow-white/4 flex h-9 items-center rounded-full bg-nero-300 px-5 font-medium text-13/4 text-white"
+                className="-tracking-[0.03em] inset-shadow-0-1-0 inset-shadow-white/4 flex h-9 items-center rounded-full bg-nero-300 px-5 font-medium text-12/4 text-white"
                 key={tag}
               >
                 {tag}
@@ -52,32 +43,22 @@ export default function Centus() {
             ))}
           </ul>
         </main>
-        <section className="narrow-container max-w-232 space-y-3 py-2">
-          <article className="flex items-center justify-center rounded-[1.5rem] bg-[url(/images/centus/1-bg.jpg)] bg-cover pt-24 pb-25">
-            <img alt="Index page" className="w-7/10" src="/images/centus/1.jpg" />
-          </article>
-          <article className="flex items-center justify-center rounded-[1.5rem] bg-white-smoke-100 pt-24 pb-25">
+        <section className="mx-auto max-w-232 space-y-3 mt-37">
+          {images.map((image) => (
             <img
-              alt="Other page"
-              className="w-7/10 rounded-[0.5rem] border border-gainsboro-100"
-              src="/images/centus/2.jpg"
+              key={image.id}
+              alt={image.alt}
+              className="rounded-3xl"
+              data-description={image.description}
+              data-title={image.title}
+              src={image.src}
+              srcSet={`${image.src} 1x, ${image.src.replace('.jpg', '@2x.jpg')} 2x, ${image.src.replace('.jpg', '@3x.jpg')} 3x`}
             />
-          </article>
-          <article className="flex items-center justify-center rounded-[1.5rem] bg-white-smoke-100 pt-24 pb-25">
-            <img alt="Other page" className="w-7/10" src="/images/centus/3.png" />
-          </article>
-          <article className="flex items-center justify-center rounded-[1.5rem] bg-white-smoke-100 pt-24 pb-25">
-            <img
-              alt="Other page"
-              className="w-7/10 rounded-[0.5rem] border border-gainsboro-100"
-              src="/images/centus/4.png"
-            />
-          </article>
-          <article className="flex items-center justify-center rounded-[1.5rem] bg-[url(/images/centus/5-bg.jpg)] bg-cover pt-24 pb-25">
-            <img alt="Index page" className="w-7/10" src="/images/centus/5.png" />
-          </article>
+          ))}
         </section>
-        <Projects excludeSlug="centus" />
+        <div className="mt-35">
+          <Projects excludeSlug="centus" />
+        </div>
       </div>
     </>
   );

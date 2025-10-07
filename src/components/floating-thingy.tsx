@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 type Config = { color: string; description: string; title: string };
 
 const DEFAULT_STICKY_TOP_FALLBACK = 160;
-const DEFAULT_DASH = '#5f5f5f';
+const DEFAULT_DASH = 'var(--color-dim-gray-100)';
 const HYSTERESIS = 4;
 
 export function FloatingThingy() {
@@ -135,7 +135,7 @@ export function FloatingThingy() {
       const scrollBottom = window.scrollY + viewportH;
       const docH = document.documentElement.scrollHeight;
       const scrollPercentage = scrollBottom / docH;
-      const atBottom = scrollPercentage >= 0.95;
+      const atBottom = scrollPercentage >= 0.90;
 
       let activeEl: HTMLElement | null = null;
       let offset = 0;
@@ -233,7 +233,7 @@ export function FloatingThingy() {
         >
           {config.title && <h6 className="font-medium text-13/4 text-white">{config.title}</h6>}
           {config.description && (
-            <p className="font-medium text-12/5 text-dim-gray-100">{config.description}</p>
+            <p className="-tracking-[0.03em] max-w-45 font-medium text-12/5 text-dim-gray-100">{config.description}</p>
           )}
         </div>
       </div>

@@ -24,24 +24,26 @@ export default function Paynt() {
       <FloatingThingy />
       <div className="space-y-33 pt-15 pb-86">
         <main className="narrow-container">
-          <div className="space-y-4">
+          <div>
             <p className="font-medium text-13/4 text-dim-gray-100">2018 - 2021</p>
-            <h3 className="-tracking-[0.01em] font-medium text-28/10 text-white">Paynt</h3>
-            <p className="-tracking-[0.02em] text-15/7 text-nobel-100">
-              Paydoo (now Paynt) provides payment processing and acquiring services for European
-              merchants, ISOs, and payment facilitators.
-            </p>
-            <p className="-tracking-[0.02em] text-15/7 text-nobel-100">
-              I worked at Paydoo as Head of Design, overseeing all design efforts across product and
-              brand. I led the design of an industry-changing onboarding platform, the marketing
-              website, and POS applications, while also guiding the creation of marketing materials
-              and visual assets used across the company.
-            </p>
-            <p className="-tracking-[0.02em] text-15/7 text-nobel-100">
-              One of the key projects I directed was Paydoo’s full rebranding into Paynt —
-              redefining the brand’s identity, visual language, and communication style to better
-              reflect its evolution and growth.
-            </p>
+            <h3 className="-tracking-[0.01em] mt-2 font-medium text-28/10 text-white">Paynt</h3>
+            <div className="mt-4 space-y-4">
+              <p className="-tracking-[0.02em] text-15/7 text-nobel-100">
+                Paydoo (now Paynt) provides payment processing and acquiring services for European
+                merchants, ISOs, and payment facilitators.
+              </p>
+              <p className="-tracking-[0.02em] text-15/7 text-nobel-100">
+                I worked at Paydoo as Head of Design, overseeing all design efforts across product and
+                brand. I led the design of an industry-changing onboarding platform, the marketing
+                website, and POS applications, while also guiding the creation of marketing materials
+                and visual assets used across the company.
+              </p>
+              <p className="-tracking-[0.02em] text-15/7 text-nobel-100">
+                One of the key projects I directed was Paydoo's full rebranding into Paynt —
+                redefining the brand's identity, visual language, and communication style to better
+                reflect its evolution and growth.
+              </p>
+            </div>
           </div>
           <ul className="mt-11 flex flex-wrap gap-2">
             {tags.map((tag) => (

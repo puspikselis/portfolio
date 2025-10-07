@@ -1,3 +1,4 @@
+import { ArrowTopRightCircle } from '@/components/icons/arrow-top-right-circle';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { businesses } from '@/data/businesses';
@@ -46,10 +47,11 @@ function BusinessCard({
               <li key={button.label}>
                 <Button
                   asChild
-                  className="inset-shadow-0-1-0 inset-shadow-white/8 h-9 rounded-full bg-nero-100 px-5 font-semibold text-12 text-white"
+                  className="inset-shadow-0-1-0 inset-shadow-white/8 h-9 rounded-full bg-nero-100 px-4 font-semibold text-12 text-white"
                 >
-                  <a href={button.href} rel="noopener noreferrer" target="_blank">
+                  <a className="flex items-center gap-2" href={button.href} rel="noopener noreferrer" target="_blank">
                     {button.label}
+                    <ArrowTopRightCircle />
                   </a>
                 </Button>
               </li>
@@ -65,7 +67,7 @@ export function Businesses() {
   return (
     <section
       className="narrow-container inset-shadow-0-1-0 inset-shadow-white/4 max-w-152 bg-nero-300 py-8 md:rounded-[1.5rem] md:px-8"
-      data-color="#FF7524"
+      data-color="var(--color-orange-100)"
       data-title="Side projects"
     >
       {businesses.map((business, index) => (

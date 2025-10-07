@@ -14,7 +14,7 @@ export function Header() {
         </Avatar>
         <div className="flex flex-col-reverse justify-center gap-1">
           <h1 className="font-semibold text-13/4 text-white">Kristaps Krūze</h1>
-          <h2 className="font-medium text-12/4 text-dim-gray-100">Designer</h2>
+          <h2 className="-tracking-[0.03em] font-medium text-12/4 text-dim-gray-100">Designer</h2>
         </div>
       </Link>
       <div className="flex items-center gap-5">
