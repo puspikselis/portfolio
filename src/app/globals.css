@@ -146,10 +146,25 @@
 
 @layer components {
   .narrow-container {
-    @apply mx-auto max-w-144 px-4;
+    @apply mx-auto max-w-144 px-5;
   }
 
   .link-overlay {
     @apply before:absolute before:inset-0 before:block before:content-[''];
   }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+  display: flex;
+  width: max-content;
 }

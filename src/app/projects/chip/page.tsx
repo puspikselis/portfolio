@@ -15,7 +15,7 @@ export default function Chip() {
   return (
     <>
       <FloatingThingy />
-      <div className="pt-15 pb-80">
+      <div className="pt-15 pb-40 md:pb-80">
         <main
           className="narrow-container"
           data-color="var(--color-dim-gray-100)"
@@ -48,7 +48,7 @@ export default function Chip() {
             ))}
           </ul>
         </main>
-        <section className="mx-auto mt-37 max-w-232 space-y-3">
+        <section className="mt-20 space-y-3 px-5 md:mx-auto md:mt-37 md:max-w-232 md:px-0">
           {images.map((image) => (
             <img
               alt={image.alt}
@@ -60,7 +60,7 @@ export default function Chip() {
             />
           ))}
         </section>
-        <div className="mt-35">
+        <div className="mt-20 md:mt-35">
           <Projects excludeSlug="chip" />
         </div>
       </div>

@@ -11,11 +11,11 @@ const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600'] });
 export const metadata: Metadata = {
   description:
     "Designer turning ideas into products people actually enjoy using. I've built my own businesses and helped clients worldwide create complete digital experiences that look great and work even better.",
-  title: 'Kristaps Krūze - Designer',
   icons: {
-    icon: '/favicon/icon.png',
     apple: '/favicon/apple-icon.png',
+    icon: '/favicon/icon.png',
   },
+  title: 'Kristaps Krūze - Designer',
 };
 
 export default function RootLayout({

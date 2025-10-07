@@ -216,7 +216,7 @@ export function FloatingThingy() {
   } as React.CSSProperties;
 
   return (
-    <div className="pointer-events-none fixed inset-x-0 top-40 z-10">
+    <div className="pointer-events-none fixed inset-x-0 top-40 z-10 hidden md:block">
       <div className="mx-auto max-w-404">
         <div
           aria-atomic="true"

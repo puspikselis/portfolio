@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <>
       <FloatingThingy />
-      <div className="pt-13 pb-80">
+      <div className="pt-13 pb-40 md:pb-80">
         <main
           className="narrow-container space-y-4"
           data-color="var(--color-orange-100)"
@@ -27,12 +27,16 @@ export default function Home() {
             I've built my own businesses and helped clients worldwide create complete digital
             experiences that look great and work even better.
           </p>
-          <p className="-tracking-[0.01em] font-medium text-28/10">Let's work together!</p>
+          <p className="-tracking-[0.01em] font-medium text-28/10">
+            <a className="no-underline" href="mailto:kristaps@kruze.lv">
+              Let's work together!
+            </a>
+          </p>
         </main>
-        <div className="mt-35">
+        <div className="mt-20 md:mt-35">
           <Projects />
         </div>
-        <div className="mt-37">
+        <div className="mt-20 md:mt-37">
           <Businesses />
         </div>
       </div>

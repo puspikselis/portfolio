@@ -1,4 +1,4 @@
-import { ArrowTopRightCircle } from '@/components/icons/arrow-top-right-circle';
+// import { ArrowTopRightCircle } from '@/components/icons/arrow-top-right-circle';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { businesses } from '@/data/businesses';
@@ -56,7 +56,7 @@ function BusinessCard({
                     target="_blank"
                   >
                     {button.label}
-                    <ArrowTopRightCircle />
+                    {/* <ArrowTopRightCircle /> */}
                   </a>
                 </Button>
               </li>
@@ -71,7 +71,7 @@ function BusinessCard({
 export function Businesses() {
   return (
     <section
-      className="narrow-container inset-shadow-0-1-0 inset-shadow-white/4 max-w-152 bg-nero-300 py-8 md:rounded-[1.5rem] md:px-8"
+      className="inset-shadow-0-1-0 inset-shadow-white/4 mx-auto max-w-152 bg-nero-300 px-5 py-8 md:rounded-[1.5rem] md:px-8"
       data-color="var(--color-orange-100)"
       data-title="Side projects"
     >
