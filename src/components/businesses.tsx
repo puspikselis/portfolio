@@ -23,7 +23,7 @@ function BusinessCard({
           className="size-12 rounded-[0.75rem] bg-(--color)"
           style={{ '--color': business.color || '#1d1d1d' } as React.CSSProperties}
         >
-          <AvatarImage src={business.image} />
+          <AvatarImage alt={`${business.title} logo`} src={business.image} />
           <AvatarFallback className="bg-transparent text-15 text-white/20">?</AvatarFallback>
         </Avatar>
         <div className="space-y-1">
@@ -47,9 +47,14 @@ function BusinessCard({
               <li key={button.label}>
                 <Button
                   asChild
-                  className="inset-shadow-0-1-0 inset-shadow-white/8 h-9 rounded-full bg-nero-100 px-4 font-semibold text-12 text-white"
+                  className="group inset-shadow-0-1-0 inset-shadow-white/8 h-9 rounded-full bg-nero-100 px-4 font-semibold text-12 text-white hover:bg-nero-200"
                 >
-                  <a className="flex items-center gap-2" href={button.href} rel="noopener noreferrer" target="_blank">
+                  <a
+                    className="flex items-center gap-2 [&_svg_path:first-of-type]:group-hover:fill-white [&_svg_path:last-of-type]:group-hover:stroke-black [&_svg_path]:transition-all [&_svg_path]:duration-200 [&_svg_path]:ease-in-out"
+                    href={button.href}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
                     {button.label}
                     <ArrowTopRightCircle />
                   </a>

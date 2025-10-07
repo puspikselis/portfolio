@@ -6,8 +6,9 @@ import { Projects } from '@/components/projects';
 import { images, tags } from './data';
 
 export const metadata: Metadata = {
+  description:
+    'Centus is a localization management platform that helps teams ship multilingual products faster. As Lead Designer, I led end-to-end product work from concept to launch, defining core information architecture, translation workflows, and collaboration patterns.',
   title: 'Centus - Lead Designer | Kristaps Krūze',
-  description: 'Centus is a localization-management platform that helps teams ship multilingual products faster. As Lead Designer, I led end-to-end product work from concept to launch, defining core information architecture, translation workflows, and collaboration patterns.',
 };
 
 export default function Centus() {
@@ -15,13 +16,17 @@ export default function Centus() {
     <>
       <FloatingThingy />
       <div className="pt-15 pb-80">
-        <main className="narrow-container" data-color="var(--color-dim-gray-100)" data-title="Intro">
+        <main
+          className="narrow-container"
+          data-color="var(--color-dim-gray-100)"
+          data-title="Intro"
+        >
           <div>
             <p className="font-medium text-13/4 text-dim-gray-100">2023 - 2025</p>
             <h3 className="-tracking-[0.01em] mt-2 font-medium text-28/10 text-white">Centus</h3>
             <div className="mt-4 space-y-4">
               <p className="-tracking-[0.02em] text-15/7 text-nobel-100">
-                Centus is a localization-management platform that helps teams ship multilingual
+                Centus is a localization management platform that helps teams ship multilingual
                 products faster.
               </p>
               <p className="-tracking-[0.02em] text-15/7 text-nobel-100">
@@ -43,16 +48,15 @@ export default function Centus() {
             ))}
           </ul>
         </main>
-        <section className="mx-auto max-w-232 space-y-3 mt-37">
+        <section className="mx-auto mt-37 max-w-232 space-y-3">
           {images.map((image) => (
             <img
-              key={image.id}
               alt={image.alt}
               className="rounded-3xl"
-              data-description={image.description}
               data-title={image.title}
+              key={image.id}
               src={image.src}
-              srcSet={`${image.src} 1x, ${image.src.replace('.jpg', '@2x.jpg')} 2x, ${image.src.replace('.jpg', '@3x.jpg')} 3x`}
+              srcSet={`${image.src} 1x, ${image.src.replace(/\.(jpg|png|avif)$/, '@2x.$1')} 2x, ${image.src.replace(/\.(jpg|png|avif)$/, '@3x.$1')} 3x`}
             />
           ))}
         </section>

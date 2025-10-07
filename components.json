@@ -7,7 +7,7 @@
     "ui": "@/components/ui",
     "utils": "@/lib/utils"
   },
-  "iconLibrary": "lucide",
+  "iconLibrary": "none",
   "registries": {},
   "rsc": true,
   "style": "new-york",

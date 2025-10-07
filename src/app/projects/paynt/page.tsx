@@ -3,52 +3,57 @@ import type { Metadata } from 'next';
 import { FloatingThingy } from '@/components/floating-thingy';
 import { Projects } from '@/components/projects';
 
-const tags = [
-  'Product design',
-  'Design leadership',
-  'Design systems',
-  'UX/UI Design',
-  'Prototyping',
-  'Handoff',
-  'Design QA',
-];
+import { images, tags } from './data';
 
 export const metadata: Metadata = {
-  description: 'Finance',
-  title: 'Paynt - Lead designer',
+  description:
+    "Paydoo (now Paynt) is a European payments acquirer. As Lead Designer, I led end-to-end product and brand work, including the company's rebrand from Paydoo to Paynt.",
+  title: 'Paynt - Lead Designer | Kristaps Krūze',
 };
 
 export default function Paynt() {
   return (
     <>
       <FloatingThingy />
-      <div className="space-y-33 pt-15 pb-86">
-        <main className="narrow-container">
+      <div className="pt-15 pb-80">
+        <main
+          className="narrow-container"
+          data-color="var(--color-dim-gray-100)"
+          data-title="Intro"
+        >
           <div>
             <p className="font-medium text-13/4 text-dim-gray-100">2018 - 2021</p>
             <h3 className="-tracking-[0.01em] mt-2 font-medium text-28/10 text-white">Paynt</h3>
             <div className="mt-4 space-y-4">
               <p className="-tracking-[0.02em] text-15/7 text-nobel-100">
-                Paydoo (now Paynt) provides payment processing and acquiring services for European
-                merchants, ISOs, and payment facilitators.
+                Paydoo (now Paynt) is a European payments acquirer.
               </p>
               <p className="-tracking-[0.02em] text-15/7 text-nobel-100">
-                I worked at Paydoo as Head of Design, overseeing all design efforts across product and
-                brand. I led the design of an industry-changing onboarding platform, the marketing
-                website, and POS applications, while also guiding the creation of marketing materials
-                and visual assets used across the company.
+                As Lead Designer, I led end-to-end product and brand work. I was the hands-on
+                product designer for the ISO onboarding platform, POS applications, and marketing
+                website, and I managed designers producing marketing materials, documents, and other
+                collateral. I also led the company's rebrand from Paydoo to Paynt in partnership
+                with{' '}
+                <a
+                  className="no-underline transition-opacity duration-200 ease-in-out hover:opacity-80"
+                  href="https://www.asketic.com"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Asketic
+                </a>
+                , aligning the identity, visual language, and messaging with the company's
+                evolution.
               </p>
               <p className="-tracking-[0.02em] text-15/7 text-nobel-100">
-                One of the key projects I directed was Paydoo's full rebranding into Paynt —
-                redefining the brand's identity, visual language, and communication style to better
-                reflect its evolution and growth.
+                Note: Samples include both Paydoo and Paynt branding due to project timing.
               </p>
             </div>
           </div>
           <ul className="mt-11 flex flex-wrap gap-2">
             {tags.map((tag) => (
               <li
-                className="inset-shadow-0-1-0 inset-shadow-white/4 flex h-9 items-center rounded-full bg-nero-300 px-5 font-medium text-13/4 text-white"
+                className="-tracking-[0.03em] inset-shadow-0-1-0 inset-shadow-white/4 flex h-9 items-center rounded-full bg-nero-300 px-5 font-medium text-12/4 text-white"
                 key={tag}
               >
                 {tag}
@@ -56,18 +61,21 @@ export default function Paynt() {
             ))}
           </ul>
         </main>
-        <section className="narrow-container max-w-232 space-y-3 py-2">
-          <article className="flex items-center justify-center rounded-[1.5rem] bg-[url(/images/paynt/1-bg.jpg)] bg-cover pt-24 pb-25">
-            <img alt="Index page" className="w-7/10" src="/images/paynt/1.png" />
-          </article>
-          <article className="flex items-center justify-center rounded-[1.5rem] bg-white-smoke-100 pt-24 pb-25">
-            <img alt="Other page" className="w-7/10" src="/images/paynt/2.png" />
-          </article>
-          <article className="flex items-center justify-center rounded-[1.5rem] bg-[url(/images/paynt/3-bg.jpg)] bg-cover pt-24 pb-25">
-            <img alt="Index page" className="w-7/10" src="/images/paynt/3.png" />
-          </article>
+        <section className="mx-auto mt-37 max-w-232 space-y-3">
+          {images.map((image) => (
+            <img
+              alt={image.alt}
+              className="rounded-3xl"
+              data-title={image.title}
+              key={image.id}
+              src={image.src}
+              srcSet={`${image.src} 1x, ${image.src.replace(/\.(jpg|png|avif)$/, '@2x.$1')} 2x, ${image.src.replace(/\.(jpg|png|avif)$/, '@3x.$1')} 3x`}
+            />
+          ))}
         </section>
-        <Projects excludeSlug="paynt" />
+        <div className="mt-35">
+          <Projects excludeSlug="paynt" />
+        </div>
       </div>
     </>
   );

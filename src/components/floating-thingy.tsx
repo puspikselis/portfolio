@@ -135,7 +135,7 @@ export function FloatingThingy() {
       const scrollBottom = window.scrollY + viewportH;
       const docH = document.documentElement.scrollHeight;
       const scrollPercentage = scrollBottom / docH;
-      const atBottom = scrollPercentage >= 0.90;
+      const atBottom = scrollPercentage >= 0.9;
 
       let activeEl: HTMLElement | null = null;
       let offset = 0;
@@ -233,7 +233,9 @@ export function FloatingThingy() {
         >
           {config.title && <h6 className="font-medium text-13/4 text-white">{config.title}</h6>}
           {config.description && (
-            <p className="-tracking-[0.03em] max-w-45 font-medium text-12/5 text-dim-gray-100">{config.description}</p>
+            <p className="-tracking-[0.03em] max-w-45 font-medium text-12/5 text-dim-gray-100">
+              {config.description}
+            </p>
           )}
         </div>
       </div>

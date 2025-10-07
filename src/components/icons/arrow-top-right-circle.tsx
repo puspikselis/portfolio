@@ -1,12 +1,6 @@
 export function ArrowTopRightCircle() {
   return (
-    <svg
-      fill="none"
-      height="14"
-      viewBox="0 0 14 14"
-      width="14"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg fill="none" height="14" viewBox="0 0 14 14" width="14" xmlns="http://www.w3.org/2000/svg">
       <title>External link</title>
       <g clipPath="url(#clip0_162_2827)">
         <g filter="url(#filter0_i_162_2827)">
@@ -35,7 +29,12 @@ export function ArrowTopRightCircle() {
         >
           <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend in="SourceGraphic" in2="BackgroundImageFix" mode="normal" result="shape" />
-          <feColorMatrix in="SourceAlpha" result="hardAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
+          <feColorMatrix
+            in="SourceAlpha"
+            result="hardAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+          />
           <feOffset dy="1" />
           <feComposite in2="hardAlpha" k2="-1" k3="1" operator="arithmetic" />
           <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.04 0" />

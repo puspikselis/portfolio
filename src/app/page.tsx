@@ -5,8 +5,9 @@ import { FloatingThingy } from '@/components/floating-thingy';
 import { Projects } from '@/components/projects';
 
 export const metadata: Metadata = {
+  description:
+    "Designer turning ideas into products people actually enjoy using. I've built my own businesses and helped clients worldwide create complete digital experiences that look great and work even better.",
   title: 'Kristaps Krūze - Designer',
-  description: 'Designer turning ideas into products people actually enjoy using. I\'ve built my own businesses and helped clients worldwide create complete digital experiences that look great and work even better.',
 };
 
 export default function Home() {
@@ -14,7 +15,11 @@ export default function Home() {
     <>
       <FloatingThingy />
       <div className="pt-13 pb-80">
-        <main className="narrow-container space-y-4" data-color="var(--color-orange-100)" data-title="Intro">
+        <main
+          className="narrow-container space-y-4"
+          data-color="var(--color-orange-100)"
+          data-title="Intro"
+        >
           <h3 className="-tracking-[0.01em] font-medium text-28/10 text-white">
             Designer turning ideas into products people actually enjoy using.
           </h3>

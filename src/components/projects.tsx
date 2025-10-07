@@ -24,7 +24,7 @@ function ProjectCard({
           className="size-12 rounded-[0.75rem] bg-(--color)"
           style={{ '--color': project.color || '#1d1d1d' } as React.CSSProperties}
         >
-          <AvatarImage src={project.image} />
+          <AvatarImage alt={`${project.title} logo`} src={project.image} />
           <AvatarFallback className="bg-transparent text-15 text-white/20">
             {project.Icon ? <project.Icon /> : '?'}
           </AvatarFallback>
@@ -44,13 +44,15 @@ function ProjectCard({
         </div>
         <Button
           asChild={!!project.slug}
-          className="inset-shadow-0-1-0 inset-shadow-white/8 ml-auto h-9 rounded-full bg-nero-100 px-5 font-semibold text-12 text-white disabled:bg-nero-300 disabled:text-dim-gray-100"
+          className="inset-shadow-0-1-0 inset-shadow-white/8 ml-auto h-9 rounded-full bg-nero-100 px-5 font-semibold text-12 text-white hover:bg-nero-200 disabled:bg-nero-300 disabled:text-dim-gray-100"
           disabled={!project.slug}
         >
           {project.slug ? (
             <Link className="link-overlay" href={`/projects/${project.slug}`}>
               View
             </Link>
+          ) : project.id === 2 ? (
+            'Soon'
           ) : (
             'Archive'
           )}
@@ -69,7 +71,7 @@ export function Projects({ excludeSlug }: { excludeSlug?: string } = {}) {
     <section
       className="narrow-container space-y-14"
       data-color="var(--color-orange-100)"
-      data-title={excludeSlug ? "Other projects" : "Projects"}
+      data-title={excludeSlug ? 'Other projects' : 'Projects'}
     >
       {filteredProjects.map((project, index) => (
         <ProjectCard isFirst={index === 0} key={project.id} project={project} />
