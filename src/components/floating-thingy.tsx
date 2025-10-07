@@ -16,6 +16,7 @@ export function FloatingThingy() {
     description: '',
     title: '',
   });
+  const [offset, setOffset] = useState(0);
 
   const floatingRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | undefined>(undefined);
@@ -102,7 +103,8 @@ export function FloatingThingy() {
       const viewportH = window.innerHeight;
       const scrollBottom = window.scrollY + viewportH;
       const docH = document.documentElement.scrollHeight;
-      const atBottom = Math.ceil(scrollBottom) >= Math.floor(docH);
+      const scrollPercentage = scrollBottom / docH;
+      const atBottom = scrollPercentage >= 0.95;
 
       let activeEl: HTMLElement | null = null;
       let offset = 0;
@@ -146,7 +148,7 @@ export function FloatingThingy() {
       activeEl = activeEl || elements[0];
 
       if (offset !== lastOffsetRef.current) {
-        host.style.transform = `translate3d(0, ${offset}px, 0)`;
+        setOffset(offset);
         lastOffsetRef.current = offset;
       }
       if (activeEl) updateConfig(activeEl);
@@ -178,29 +180,33 @@ export function FloatingThingy() {
     };
   }, [readStickyTop]);
 
-  interface CSSVars extends React.CSSProperties {
-    ['--dash-color']?: string;
-  }
-  const style: CSSVars = { '--dash-color': config.color || DEFAULT_DASH };
+  const style = {
+    '--dash-color': config.color || DEFAULT_DASH,
+    '--offset': `${offset}px`,
+  } as React.CSSProperties;
 
   return (
-    <div
-      aria-atomic="true"
-      aria-live="polite"
-      className={cn(
-        'sticky top-40 z-10 max-w-[16rem] space-y-2 pl-24 transition-transform duration-300 ease-out will-change-transform motion-reduce:transform-none motion-reduce:transition-none',
-        config.title &&
-          'before:absolute before:top-2 before:left-0 before:block before:h-px before:w-8 before:bg-nero-500 before:content-[""]',
-        config.title &&
-          'after:absolute after:top-2 after:left-12 after:block after:h-px after:w-8 after:bg-[var(--dash-color)] after:transition-colors after:content-[""]',
-      )}
-      ref={floatingRef}
-      style={style}
-    >
-      {config.title && <h6 className="font-medium text-13/4 text-white">{config.title}</h6>}
-      {config.description && (
-        <p className="font-medium text-12/5 text-dim-gray-100">{config.description}</p>
-      )}
+    <div className="pointer-events-none fixed inset-x-0 top-40 z-10">
+      <div className="mx-auto max-w-404">
+        <div
+          aria-atomic="true"
+          aria-live="polite"
+          className={cn(
+            'translate-y-(--offset) space-y-2 pl-24 duration-300 ease-out will-change-transform motion-safe:transition-transform',
+            config.title &&
+              'before:absolute before:top-2 before:left-0 before:block before:h-px before:w-8 before:bg-nero-500 before:content-[""]',
+            config.title &&
+              'after:absolute after:top-2 after:left-12 after:block after:h-px after:w-8 after:bg-(--dash-color) after:transition-colors after:content-[""]',
+          )}
+          ref={floatingRef}
+          style={style}
+        >
+          {config.title && <h6 className="font-medium text-13/4 text-white">{config.title}</h6>}
+          {config.description && (
+            <p className="font-medium text-12/5 text-dim-gray-100">{config.description}</p>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
