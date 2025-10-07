@@ -22,7 +22,7 @@ export default function Chip() {
   return (
     <>
       <FloatingThingy />
-      <div className="space-y-33 pt-38 pb-86">
+      <div className="space-y-33 pt-15 pb-86">
         <main className="narrow-container" data-color="#00d2b2" data-title="Intro">
           <div className="space-y-4">
             <p className="font-medium text-13/4 text-dim-gray-100">2018</p>

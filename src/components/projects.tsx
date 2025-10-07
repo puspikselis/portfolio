@@ -66,7 +66,11 @@ export function Projects({ excludeSlug }: { excludeSlug?: string } = {}) {
     : projects;
 
   return (
-    <section className="narrow-container space-y-14 py-2" data-color="#4CAF50" data-title="Projects">
+    <section
+      className="narrow-container space-y-14 py-2"
+      data-color="#FF7524"
+      data-title="Projects"
+    >
       {filteredProjects.map((project, index) => (
         <ProjectCard isFirst={index === 0} key={project.id} project={project} />
       ))}

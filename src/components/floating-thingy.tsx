@@ -16,15 +16,19 @@ export function FloatingThingy() {
     description: '',
     title: '',
   });
-  const [offset, setOffset] = useState(0);
 
   const floatingRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | undefined>(undefined);
   const lastSigRef = useRef('');
-  const lastOffsetRef = useRef(0);
   const stickyTopRef = useRef<number>(DEFAULT_STICKY_TOP_FALLBACK);
   const elementsRef = useRef<HTMLElement[]>([]);
   const updateActiveElementRef = useRef<() => void>(() => {});
+
+  // RAF-based lerp for smooth visual updates
+  const targetOffsetRef = useRef(0);
+  const visualOffsetRef = useRef(0);
+  const animRef = useRef<number | null>(null);
+  const animateFnRef = useRef<() => void>(() => {});
 
   const readStickyTop = useCallback(() => {
     const el = floatingRef.current;
@@ -37,7 +41,34 @@ export function FloatingThingy() {
     elementsRef.current = Array.from(document.querySelectorAll<HTMLElement>('[data-title]'));
   }, []);
 
+  // RAF-based animation function
+  animateFnRef.current = () => {
+    const v = visualOffsetRef.current;
+    const t = targetOffsetRef.current;
+    const next = v + (t - v) * 0.25; // smoothing factor (~4 frames to settle)
+    visualOffsetRef.current = Math.abs(next - t) < 0.5 ? t : next;
+
+    // write the CSS var directly—no React re-render
+    const n = visualOffsetRef.current;
+    floatingRef.current?.style.setProperty('--offset', `${n}px`);
+
+    if (n !== t) {
+      animRef.current = requestAnimationFrame(() => animateFnRef.current?.());
+    } else {
+      animRef.current = null;
+    }
+  };
+
+  const setTargetOffset = useCallback((px: number) => {
+    targetOffsetRef.current = Math.max(0, px | 0);
+    if (animRef.current == null) {
+      animRef.current = requestAnimationFrame(() => animateFnRef.current?.());
+    }
+  }, []);
+
   useLayoutEffect(() => {
+    // Initialize the CSS var
+    floatingRef.current?.style.setProperty('--offset', '0px');
     collectElements();
     readStickyTop();
   }, [collectElements, readStickyTop]);
@@ -147,9 +178,8 @@ export function FloatingThingy() {
 
       activeEl = activeEl || elements[0];
 
-      if (offset !== lastOffsetRef.current) {
-        setOffset(offset);
-        lastOffsetRef.current = offset;
+      if (offset !== targetOffsetRef.current) {
+        setTargetOffset(offset);
       }
       if (activeEl) updateConfig(activeEl);
     };
@@ -175,14 +205,14 @@ export function FloatingThingy() {
 
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      if (animRef.current) cancelAnimationFrame(animRef.current);
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onResize);
     };
-  }, [readStickyTop]);
+  }, [readStickyTop, setTargetOffset]);
 
   const style = {
     '--dash-color': config.color || DEFAULT_DASH,
-    '--offset': `${offset}px`,
   } as React.CSSProperties;
 
   return (
@@ -192,11 +222,11 @@ export function FloatingThingy() {
           aria-atomic="true"
           aria-live="polite"
           className={cn(
-            'translate-y-(--offset) space-y-2 pl-24 duration-300 ease-out will-change-transform motion-safe:transition-transform',
+            'translate-y-[var(--offset)] space-y-2 pl-24 will-change-transform',
             config.title &&
               'before:absolute before:top-2 before:left-0 before:block before:h-px before:w-8 before:bg-nero-500 before:content-[""]',
             config.title &&
-              'after:absolute after:top-2 after:left-12 after:block after:h-px after:w-8 after:bg-(--dash-color) after:transition-colors after:content-[""]',
+              'after:absolute after:top-2 after:left-12 after:block after:h-px after:w-8 after:bg-[var(--dash-color)] after:transition-colors after:content-[""]',
           )}
           ref={floatingRef}
           style={style}

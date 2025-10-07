@@ -65,7 +65,7 @@ export function Businesses() {
   return (
     <section
       className="narrow-container inset-shadow-0-1-0 inset-shadow-white/4 max-w-152 bg-nero-300 py-8 md:rounded-[1.5rem] md:px-8"
-      data-color="#44a1ff"
+      data-color="#FF7524"
       data-title="Side projects"
     >
       {businesses.map((business, index) => (

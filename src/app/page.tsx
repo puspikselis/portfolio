@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <FloatingThingy />
-      <div className="space-y-33 pt-38 pb-78">
+      <div className="space-y-33 pt-13 pb-80">
         <main className="narrow-container space-y-4" data-color="#FF7524" data-title="Intro">
           <h3 className="-tracking-[0.01em] font-medium text-28/10 text-white">
             Designer turning ideas into products people actually enjoy using.
