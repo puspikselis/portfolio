@@ -1,4 +1,3 @@
-// import { ArrowTopRightCircle } from '@/components/icons/arrow-top-right-circle';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { businesses } from '@/data/businesses';
@@ -56,7 +55,6 @@ function BusinessCard({
                     target="_blank"
                   >
                     {button.label}
-                    {/* <ArrowTopRightCircle /> */}
                   </a>
                 </Button>
               </li>

@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 
 import { GridOverlay } from '@/components/grid-overlay';
 import { Header } from '@/components/header';
+import { ToastProvider } from '@/components/ui/toast';
 
 import './globals.css';
 
@@ -29,11 +30,13 @@ export default function RootLayout({
       style={{ '--default-font-family': inter.style.fontFamily } as React.CSSProperties}
     >
       <body className="relative">
-        <GridOverlay />
-        <div className="relative mx-auto max-w-404 border-nero-500 border-r border-l">
-          <Header />
-          {children}
-        </div>
+        <ToastProvider>
+          <GridOverlay />
+          <div className="relative mx-auto max-w-404 border-nero-500 border-r border-l">
+            <Header />
+            {children}
+          </div>
+        </ToastProvider>
       </body>
     </html>
   );
