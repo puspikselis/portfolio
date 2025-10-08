@@ -25,7 +25,7 @@ function ProjectCard({
           style={{ '--color': project.color || '#1d1d1d' } as React.CSSProperties}
         >
           <AvatarImage alt={`${project.title} logo`} src={project.image} />
-          <AvatarFallback className="bg-transparent text-15 text-white/20">
+          <AvatarFallback className="-tracking-[0.02em] bg-transparent text-15 text-white/20">
             {project.Icon ? <project.Icon /> : '?'}
           </AvatarFallback>
         </Avatar>

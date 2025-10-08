@@ -1,8 +1,7 @@
 'use client';
 
-import { createContext, useContext, useState } from 'react';
-
 import * as Toast from '@radix-ui/react-toast';
+import { createContext, useContext, useState } from 'react';
 
 import { CheckCircle } from '@/components/icons/check-circle';
 import { cn } from '@/lib/utils';
@@ -42,9 +41,10 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
               'inset-shadow-0-1-0 inset-shadow-white/8',
               'fixed top-5 right-5 z-50 flex h-15 w-76 items-center justify-center rounded-2xl bg-nero-300',
               'md:top-8 md:right-12',
-              'data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-top-2 data-[state=closed]:animate-out',
-              'data-[state=open]:fade-in-0 data-[state=open]:slide-in-from-top-2 data-[state=open]:animate-in',
+              'data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-right-full data-[state=closed]:animate-out data-[state=closed]:duration-300',
+              'data-[state=open]:fade-in-0 data-[state=open]:slide-in-from-right-full data-[state=open]:animate-in data-[state=open]:duration-500',
             )}
+            duration={4000}
             onOpenChange={setOpen}
             open={open}
           >

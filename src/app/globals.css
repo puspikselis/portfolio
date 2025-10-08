@@ -146,7 +146,7 @@
 
 @layer components {
   .narrow-container {
-    @apply mx-auto max-w-144 px-5;
+    @apply mx-auto max-w-144 px-4;
   }
 
   .link-overlay {

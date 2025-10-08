@@ -32,12 +32,12 @@ export function Header() {
           >
             <a
               className="flex items-center gap-2 hover:text-white"
-                  href="https://www.linkedin.com/in/kristapskruze/"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  LinkedIn
-                </a>
+              href="https://www.linkedin.com/in/kristapskruze/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              LinkedIn
+            </a>
           </Button>
           <Button
             className="inset-shadow-0-1-0 inset-shadow-white/8 h-9 gap-2 rounded-full bg-nero-100 px-5 font-semibold text-12 text-white hover:bg-nero-200"

@@ -23,7 +23,9 @@ function BusinessCard({
           style={{ '--color': business.color || '#1d1d1d' } as React.CSSProperties}
         >
           <AvatarImage alt={`${business.title} logo`} src={business.image} />
-          <AvatarFallback className="bg-transparent text-15 text-white/20">?</AvatarFallback>
+          <AvatarFallback className="-tracking-[0.02em] bg-transparent text-15 text-white/20">
+            ?
+          </AvatarFallback>
         </Avatar>
         <div className="space-y-1">
           <h4 className="-tracking-[0.02em] font-semibold text-15/6 text-white">

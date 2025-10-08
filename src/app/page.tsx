@@ -1,16 +1,15 @@
-import type { Metadata } from 'next';
+'use client';
+
+import { useState } from 'react';
 
 import { Businesses } from '@/components/businesses';
+import { ContactDialog } from '@/components/dialogs/contact-dialog';
 import { FloatingThingy } from '@/components/floating-thingy';
 import { Projects } from '@/components/projects';
 
-export const metadata: Metadata = {
-  description:
-    "Designer turning ideas into products people actually enjoy using. I've built my own businesses and helped clients worldwide create complete digital experiences that look great and work even better.",
-  title: 'Kristaps Krūze - Designer',
-};
-
 export default function Home() {
+  const [isContactOpen, setIsContactOpen] = useState(false);
+
   return (
     <>
       <FloatingThingy />
@@ -28,9 +27,13 @@ export default function Home() {
             experiences that look great and work even better.
           </p>
           <p className="-tracking-[0.01em] font-medium text-28/10">
-            <a className="no-underline" href="mailto:kristaps@kruze.lv">
+            <button
+              className="no-underline transition-opacity duration-200 ease-in-out hover:opacity-80"
+              onClick={() => setIsContactOpen(true)}
+              type="button"
+            >
               Let's work together!
-            </a>
+            </button>
           </p>
         </main>
         <div className="mt-20 md:mt-35">
@@ -40,6 +43,7 @@ export default function Home() {
           <Businesses />
         </div>
       </div>
+      <ContactDialog isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
     </>
   );
 }
