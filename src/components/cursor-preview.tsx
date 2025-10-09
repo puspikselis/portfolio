@@ -81,6 +81,8 @@ export function CursorPreviewProvider({ children }: { children: ReactNode }) {
 
   const contextValue = useMemo(() => ({ hidePreview, showPreview }), [hidePreview, showPreview]);
 
+  const isVideo = state.image?.endsWith('.webm');
+
   return (
     <CursorPreviewContext.Provider value={contextValue}>
       {children}
@@ -91,15 +93,13 @@ export function CursorPreviewProvider({ children }: { children: ReactNode }) {
           x: state.x + 12,
           y: state.y + 12,
         }}
-        className="pointer-events-none fixed top-0 left-0 z-50 overflow-hidden rounded-2xl bg-(--color) shadow-2xl"
+        className="pointer-events-none fixed top-0 left-0 z-50 overflow-hidden rounded-2xl shadow-2xl"
         initial={{ opacity: 0, scale: 0.85 }}
-        style={
-          {
-            '--color': state.color,
-            height: state.height,
-            width: state.width,
-          } as React.CSSProperties
-        }
+        style={{
+          backgroundColor: state.color,
+          height: state.height,
+          width: state.width,
+        }}
         transition={{
           opacity: { damping: 20, stiffness: 400 },
           scale: { damping: 20, stiffness: 400 },
@@ -107,14 +107,24 @@ export function CursorPreviewProvider({ children }: { children: ReactNode }) {
           y: SPRING_CONFIG,
         }}
       >
-        {state.image && (
-          <img
-            alt="Preview"
-            className="size-full object-cover"
-            src={state.image}
-            srcSet={`${state.image} 1x, ${state.image.replace(/\.(avif|gif)$/, '@2x.$1')} 2x, ${state.image.replace(/\.(avif|gif)$/, '@3x.$1')} 3x`}
-          />
-        )}
+        {state.image &&
+          (isVideo ? (
+            <video
+              autoPlay
+              className="size-full object-cover"
+              loop
+              muted
+              playsInline
+              src={state.image}
+            />
+          ) : (
+            <img
+              alt="Preview"
+              className="size-full object-cover"
+              src={state.image}
+              srcSet={`${state.image} 1x, ${state.image.replace(/\.avif$/, '@2x.avif')} 2x, ${state.image.replace(/\.avif$/, '@3x.avif')} 3x`}
+            />
+          ))}
       </motion.div>
     </CursorPreviewContext.Provider>
   );

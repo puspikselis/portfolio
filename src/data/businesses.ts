@@ -34,7 +34,7 @@ export const businesses = [
         label: 'Website',
         preview: {
           height: 200,
-          image: '/images/eloking/preview.gif',
+          image: '/images/eloking/preview.webm',
           width: 248,
         },
       },
