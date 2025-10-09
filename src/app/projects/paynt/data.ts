@@ -32,7 +32,7 @@ export const images = [
     description:
       'Various product interfaces and features designed for the payment platform, including merchant dashboards and transaction flows.',
     id: 'product-screens',
-    src: '/images/paynt/3-productInterfaces.avif',
+    src: '/images/paynt/3-someImages.avif',
     title: 'Product interfaces',
   },
   {

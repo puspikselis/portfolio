@@ -156,10 +156,7 @@ export function ContactDialog({ isOpen, onClose }: Props) {
                       })}
                     />
                     {errors.name && (
-                      <p
-                        className="-tracking-[0.01em] text-12/4 text-red-500"
-                        id="name-error"
-                      >
+                      <p className="-tracking-[0.01em] text-12/4 text-red-500" id="name-error">
                         {errors.name.message}
                       </p>
                     )}
@@ -184,10 +181,7 @@ export function ContactDialog({ isOpen, onClose }: Props) {
                       })}
                     />
                     {errors.email && (
-                      <p
-                        className="-tracking-[0.01em] text-12/4 text-red-500"
-                        id="email-error"
-                      >
+                      <p className="-tracking-[0.01em] text-12/4 text-red-500" id="email-error">
                         {errors.email.message}
                       </p>
                     )}
@@ -228,12 +222,9 @@ export function ContactDialog({ isOpen, onClose }: Props) {
                     })}
                   />
                   {errors.message && (
-                      <p
-                        className="-tracking-[0.01em] text-12/4 text-red-500"
-                        id="message-error"
-                      >
-                        {errors.message.message}
-                      </p>
+                    <p className="-tracking-[0.01em] text-12/4 text-red-500" id="message-error">
+                      {errors.message.message}
+                    </p>
                   )}
                 </div>
 

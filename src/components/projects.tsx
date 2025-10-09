@@ -1,5 +1,8 @@
+'use client';
+
 import Link from 'next/link';
 
+import { useCursorPreview } from '@/components/cursor-preview';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { projects } from '@/data/projects';
@@ -11,6 +14,18 @@ function ProjectCard({
   project: (typeof projects)[number];
   isFirst?: boolean;
 }) {
+  const { hidePreview, showPreview } = useCursorPreview();
+
+  const handleMouseEnter = () => {
+    if (project.slug) {
+      showPreview(project.color || '#1d1d1d', project.preview);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    hidePreview();
+  };
+
   return (
     <div className="space-y-6">
       <p
@@ -19,7 +34,11 @@ function ProjectCard({
       >
         {project.year}
       </p>
-      <div className="relative flex items-center gap-4">
+      <div
+        className="relative flex items-center gap-4"
+        onPointerEnter={handleMouseEnter}
+        onPointerLeave={handleMouseLeave}
+      >
         <Avatar
           className="size-12 rounded-xl bg-(--color)"
           style={{ '--color': project.color || '#1d1d1d' } as React.CSSProperties}
