@@ -19,21 +19,13 @@ export default function Home() {
           data-color="var(--color-orange-100)"
           data-title="Intro"
         >
-          <h3 className="-tracking-[0.01em] font-medium text-28/10 text-white">
-            Designer turning ideas into products people actually enjoy using.
-          </h3>
-          <p className="-tracking-[0.01em] font-medium text-28/10">
-            I've built my own businesses and helped clients worldwide create complete digital
-            experiences that look great and work even better.
+          <p className="-tracking-[0.01em] font-medium text-28/10 text-white">
+            Product designer with 10+ years of experience based in Latvia. I design digital products
+            people enjoy using.
           </p>
           <p className="-tracking-[0.01em] font-medium text-28/10">
-            <button
-              className="no-underline transition-opacity hover:opacity-80"
-              onClick={() => setIsContactOpen(true)}
-              type="button"
-            >
-              Let's work together!
-            </button>
+            Passion and persistence drive what I build - from my own ventures to projects with
+            clients worldwide.
           </p>
         </main>
         <div className="mt-20 md:mt-35">

@@ -1,5 +1,6 @@
 'use client';
 
+import { useMotionValueEvent, useScroll } from 'framer-motion';
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import { cn } from '@/lib/utils';
@@ -9,6 +10,7 @@ type Config = { color: string; description: string; title: string };
 const DEFAULT_STICKY_TOP_FALLBACK = 160;
 const DEFAULT_DASH = 'var(--color-dim-gray-100)';
 const HYSTERESIS = 4;
+const BOTTOM_THRESHOLD_PX = 200; // Fixed pixel threshold instead of percentage
 
 export function FloatingThingy() {
   const [config, setConfig] = useState<Config>({
@@ -23,6 +25,9 @@ export function FloatingThingy() {
   const stickyTopRef = useRef<number>(DEFAULT_STICKY_TOP_FALLBACK);
   const elementsRef = useRef<HTMLElement[]>([]);
   const updateActiveElementRef = useRef<() => void>(() => {});
+
+  // Use Framer Motion's useScroll for reliable scroll tracking
+  const { scrollY } = useScroll();
 
   // RAF-based lerp for smooth visual updates
   const targetOffsetRef = useRef(0);
@@ -134,13 +139,14 @@ export function FloatingThingy() {
       const viewportH = window.innerHeight;
       const scrollBottom = window.scrollY + viewportH;
       const docH = document.documentElement.scrollHeight;
-      const scrollPercentage = scrollBottom / docH;
-      const atBottom = scrollPercentage >= 0.9;
+      // Use fixed pixel threshold instead of percentage - more reliable across different page heights
+      const distanceFromBottom = docH - scrollBottom;
+      const nearBottom = distanceFromBottom <= BOTTOM_THRESHOLD_PX;
 
       let activeEl: HTMLElement | null = null;
       let offset = 0;
 
-      if (atBottom) {
+      if (nearBottom) {
         for (let i = elements.length - 1; i >= 0; i--) {
           const rect = elements[i].getBoundingClientRect();
           if (rect.top < viewportH && rect.bottom > 0) {
@@ -186,11 +192,6 @@ export function FloatingThingy() {
 
     updateActiveElementRef.current = updateActiveElement;
 
-    const onScroll = () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      rafRef.current = requestAnimationFrame(updateActiveElement);
-    };
-
     const onResize = () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       rafRef.current = requestAnimationFrame(() => {
@@ -200,16 +201,21 @@ export function FloatingThingy() {
     };
 
     updateActiveElement();
-    window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onResize);
 
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       if (animRef.current) cancelAnimationFrame(animRef.current);
-      window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onResize);
     };
   }, [readStickyTop, setTargetOffset]);
+
+  // Use Framer Motion's scroll tracking instead of manual scroll listener
+  // This is more reliable and doesn't cause re-renders
+  useMotionValueEvent(scrollY, 'change', () => {
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    rafRef.current = requestAnimationFrame(() => updateActiveElementRef.current?.());
+  });
 
   const style = {
     '--dash-color': config.color || DEFAULT_DASH,

@@ -43,7 +43,7 @@ export const projects = [
     color: '#1d1d1d',
     id: 5,
     image: '/images/showroom.avif',
-    tags: ['Showroom', 'Home staging'],
+    tags: ['Showroom', 'Staging'],
     title: 'Product Designer',
     year: '2013 - 2015',
   },

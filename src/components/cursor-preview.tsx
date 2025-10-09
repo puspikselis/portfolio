@@ -72,6 +72,10 @@ export function CursorPreviewProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const showPreview = useCallback((color: string, image?: string, width = 248, height = 156) => {
+    // Disable cursor preview on mobile/touch devices
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+      return;
+    }
     setState((prev) => ({ ...prev, color, height, image, isVisible: true, width }));
   }, []);
 

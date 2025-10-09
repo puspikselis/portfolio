@@ -13,7 +13,7 @@ export function Header() {
 
   return (
     <>
-      <header className="fixed inset-x-0 bottom-0 z-1 flex items-center justify-between bg-black p-5 md:sticky md:top-0 md:bg-transparent md:px-12 md:py-8">
+      <header className="fixed inset-x-0 bottom-0 z-20 flex items-center justify-between bg-black p-5 md:sticky md:top-0 md:bg-transparent md:px-12 md:py-8">
         <div className="flex gap-3">
           <Link href="/">
             <Avatar className="size-9 rounded-xl transition-opacity hover:opacity-80">

@@ -22,18 +22,6 @@ export function GridOverlay() {
 
   return (
     <div className="pointer-events-none absolute inset-0 z-50 min-h-full">
-      {/* 96px grid - black 40% */}
-      {/* <div
-        className="absolute inset-0 min-h-full bg-[length:theme(spacing.24)_theme(spacing.24)]"
-        style={{ backgroundImage: createGridGradient('rgb(0 0 0 / 0.4)', 96) }}
-      /> */}
-
-      {/* 4px grid - red 10% */}
-      {/* <div
-        className="absolute inset-0 min-h-full bg-[length:theme(spacing.1)_theme(spacing.1)]"
-        style={{ backgroundImage: createGridGradient('rgb(239 68 68 / 0.1)', 4) }}
-      /> */}
-
       {/* Rows grid - 4px height, 4px gap - red 10% */}
       <div
         className="absolute inset-0 min-h-full"
@@ -54,12 +42,6 @@ export function GridOverlay() {
           }}
         />
       </div>
-
-      {/* 16px grid - green 20% */}
-      {/* <div
-        className="absolute inset-0 min-h-full bg-[length:theme(spacing.4)_theme(spacing.4)]"
-        style={{ backgroundImage: createGridGradient('rgb(34 197 94 / 0.2)', 16) }}
-      /> */}
     </div>
   );
 }

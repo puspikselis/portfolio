@@ -1,9 +1,30 @@
 'use client';
 
+import type { CSSProperties } from 'react';
+import { useMemo } from 'react';
+
 import { useCursorPreview } from '@/components/cursor-preview';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { businesses } from '@/data/businesses';
+import { cn } from '@/lib/utils';
+
+function useIsMobile() {
+  return useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth < 768;
+  }, []);
+}
+
+function useDeviceType() {
+  return useMemo(() => {
+    if (typeof window === 'undefined') return null;
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    const isIOS = /iphone|ipad|ipod/.test(userAgent);
+    const isAndroid = /android/.test(userAgent);
+    return { isAndroid, isIOS };
+  }, []);
+}
 
 function BusinessCard({
   business,
@@ -13,16 +34,38 @@ function BusinessCard({
   isFirst?: boolean;
 }) {
   const { hidePreview, showPreview } = useCursorPreview();
+  const isMobile = useIsMobile();
+  const deviceType = useDeviceType();
 
-  const isEloking = business.id === 2;
-  const isWisp = business.id === 1;
-  const elokingUrl = 'https://eloking.com/';
+  const previewColor = business.color || '#1d1d1d';
 
-  const handleCardHover = () => {
-    if (isEloking && business.buttons[0]?.preview) {
-      const preview = business.buttons[0].preview;
-      showPreview(business.color || '#1d1d1d', preview.image, preview.width, preview.height);
+  // Filter buttons based on device on mobile
+  const filteredButtons = useMemo(() => {
+    if (!isMobile || !deviceType) return business.buttons;
+
+    // If there are App Store and Play Store buttons, show only the relevant one
+    const hasAppStore = business.buttons.some((btn) => btn.label === 'App Store');
+    const hasPlayStore = business.buttons.some((btn) => btn.label === 'PlayStore');
+
+    if (hasAppStore && hasPlayStore) {
+      if (deviceType.isIOS) {
+        return business.buttons.filter((btn) => btn.label === 'App Store');
+      }
+      if (deviceType.isAndroid) {
+        return business.buttons.filter((btn) => btn.label === 'PlayStore');
+      }
     }
+
+    return business.buttons;
+  }, [isMobile, deviceType, business.buttons]);
+
+  const primaryButton = filteredButtons[0];
+  const isCardInteractive = Boolean(business.cardHref);
+
+  const handleCardPointerEnter = () => {
+    if (!business.previewOnCardHover || !primaryButton?.preview) return;
+    const { image, width, height } = primaryButton.preview;
+    showPreview(previewColor, image, width, height);
   };
 
   return (
@@ -34,13 +77,13 @@ function BusinessCard({
         {business.year}
       </p>
       <div
-        className={`relative flex items-center gap-4 ${isEloking ? 'cursor-pointer' : ''}`}
-        onPointerEnter={isEloking ? handleCardHover : undefined}
-        onPointerLeave={isEloking ? hidePreview : undefined}
+        className={cn('relative flex items-center gap-4', isCardInteractive && 'cursor-pointer')}
+        onPointerEnter={business.previewOnCardHover ? handleCardPointerEnter : undefined}
+        onPointerLeave={business.previewOnCardHover ? hidePreview : undefined}
       >
         <Avatar
           className="size-12 rounded-xl bg-(--color)"
-          style={{ '--color': business.color || '#1d1d1d' } as React.CSSProperties}
+          style={{ '--color': previewColor } as CSSProperties}
         >
           <AvatarImage alt={`${business.title} logo`} src={business.image} />
           <AvatarFallback className="-tracking-[0.02em] bg-transparent text-15 text-white/20">
@@ -49,7 +92,10 @@ function BusinessCard({
         </Avatar>
         <div className="space-y-1">
           <h4
-            className={`-tracking-[0.02em] font-semibold text-15/6 text-white ${isEloking ? 'cursor-pointer' : ''}`}
+            className={cn(
+              '-tracking-[0.02em] font-semibold text-15/6 text-white',
+              isCardInteractive && 'cursor-pointer',
+            )}
           >
             {business.title}
           </h4>
@@ -64,20 +110,20 @@ function BusinessCard({
             ))}
           </ul>
         </div>
-        {isEloking && (
+        {isCardInteractive && business.cardHref && (
           <a
-            aria-label="Visit Eloking website"
+            aria-label={`Visit ${business.tags[0] || business.title} website`}
             className="link-overlay"
-            href={elokingUrl}
+            href={business.cardHref}
             rel="noopener noreferrer"
             target="_blank"
           >
-            <span className="sr-only">Visit Eloking website</span>
+            <span className="sr-only">Visit {business.tags[0] || business.title} website</span>
           </a>
         )}
-        {business.buttons.length > 0 && (
+        {filteredButtons.length > 0 && (
           <ul className="ml-auto flex flex-col items-center gap-2 md:flex-row">
-            {business.buttons.map((button) => (
+            {filteredButtons.map((button) => (
               <li key={button.label}>
                 <Button
                   asChild
@@ -87,18 +133,17 @@ function BusinessCard({
                     className="relative z-10 flex items-center gap-2 [&_svg_path:first-of-type]:group-hover:fill-white [&_svg_path:last-of-type]:group-hover:stroke-black [&_svg_path]:transition-all"
                     href={button.href}
                     onPointerEnter={
-                      isWisp && 'preview' in button && button.preview
-                        ? () => {
+                      button.preview
+                        ? () =>
                             showPreview(
-                              business.color || '#1d1d1d',
+                              previewColor,
                               button.preview.image,
                               button.preview.width,
                               button.preview.height,
-                            );
-                          }
+                            )
                         : undefined
                     }
-                    onPointerLeave={isWisp ? hidePreview : undefined}
+                    onPointerLeave={button.preview ? hidePreview : undefined}
                     rel="noopener noreferrer"
                     target="_blank"
                   >
@@ -117,7 +162,7 @@ function BusinessCard({
 export function Businesses() {
   return (
     <section
-      className="inset-shadow-0-1-0 inset-shadow-white/4 mx-auto max-w-152 bg-nero-300 px-5 py-8 md:rounded-3xl md:px-8"
+      className="inset-shadow-0-1-0 inset-shadow-white/4 mx-auto max-w-152 bg-nero-300 px-8 py-8 md:rounded-3xl md:px-8"
       data-color="var(--color-orange-100)"
       data-title="Side projects"
     >

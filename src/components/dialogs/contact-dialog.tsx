@@ -21,7 +21,7 @@ const schema = z.object({
 type FormValues = z.infer<typeof schema>;
 
 const inputC =
-  'inset-shadow-0-1-0 inset-shadow-white/8 h-11 w-full rounded-2xl bg-nero-100 px-4 py-3 text-15/6 text-white shadow-[0_1px_2px_rgba(0,0,0,.48)] transition-all placeholder:text-dim-gray-100 focus:placeholder:opacity-50 focus:outline-none focus:ring-1 focus:ring-orange-100 invalid:ring-1 invalid:ring-red-500/80 invalid:focus:ring-red-500';
+  'inset-shadow-0-1-0 inset-shadow-white/8 h-11 w-full rounded-xl bg-nero-100 px-4 py-3 text-15/6 text-white shadow-[0_1px_2px_rgba(0,0,0,.48)] transition-all placeholder:text-dim-gray-100 focus:placeholder:opacity-50 focus:outline-none focus:ring-1 focus:ring-orange-100';
 
 export function ContactDialog({ isOpen, onClose }: Props) {
   const { showToast } = useToast();
@@ -107,7 +107,7 @@ export function ContactDialog({ isOpen, onClose }: Props) {
               <button type="button">Close</button>
             </Dialog.Close>
 
-            <div className="w-full max-w-136 space-y-12 px-5 py-12">
+            <div className="w-full max-w-136 space-y-12 px-8 py-12">
               <div className="space-y-2">
                 <Dialog.Title asChild>
                   <h1 className="-tracking-[0.01em] font-medium text-28/10 text-white">
@@ -116,8 +116,7 @@ export function ContactDialog({ isOpen, onClose }: Props) {
                 </Dialog.Title>
                 <Dialog.Description asChild>
                   <p className="-tracking-[0.02em] text-15/7 text-nobel-100">
-                    I&apos;d love to hear from you! You can reach me by filling out the form below,
-                    or directly via email at{' '}
+                    You can reach me by filling out the form below, or directly via email at{' '}
                     <a
                       className="text-white transition-opacity hover:opacity-80"
                       href="mailto:kristaps@kruze.lv"
@@ -188,20 +187,23 @@ export function ContactDialog({ isOpen, onClose }: Props) {
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <label
-                    className="-tracking-[0.01em] block font-medium text-15 text-white"
-                    htmlFor="phone"
-                  >
-                    Phone # <span className="text-dim-gray-100">(optional)</span>
-                  </label>
-                  <input
-                    id="phone"
-                    type="tel"
-                    {...register('phone')}
-                    className={inputC}
-                    placeholder="+1 (555) 000-0000"
-                  />
+                <div className="flex gap-4">
+                  <div className="flex-1 space-y-2">
+                    <label
+                      className="-tracking-[0.01em] block font-medium text-15 text-white"
+                      htmlFor="phone"
+                    >
+                      Phone # <span className="text-dim-gray-100">(optional)</span>
+                    </label>
+                    <input
+                      id="phone"
+                      type="tel"
+                      {...register('phone')}
+                      className={inputC}
+                      placeholder="+1 (555) 000-0000"
+                    />
+                  </div>
+                  <div className="flex-1" />
                 </div>
 
                 <div className="space-y-2">
