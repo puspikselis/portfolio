@@ -1,6 +1,7 @@
 'use client';
 
 import * as Toast from '@radix-ui/react-toast';
+import { motion } from 'framer-motion';
 import { createContext, useContext, useState } from 'react';
 
 import { CheckCircle } from '@/components/icons/check-circle';
@@ -37,32 +38,43 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
         {children}
         {title && (
           <Toast.Root
-            className={cn(
-              'inset-shadow-0-1-0 inset-shadow-white/8',
-              'fixed top-5 right-5 z-50 flex h-15 w-76 items-center justify-center rounded-2xl bg-nero-300',
-              'md:top-8 md:right-12',
-              'data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-right-full data-[state=closed]:animate-out data-[state=closed]:duration-300',
-              'data-[state=open]:fade-in-0 data-[state=open]:slide-in-from-right-full data-[state=open]:animate-in data-[state=open]:duration-500',
-            )}
+            asChild
             duration={4000}
             onOpenChange={setOpen}
             open={open}
           >
-            <div className="flex h-15 w-76 items-center justify-center gap-3 p-3">
-              <div className="inset-shadow-0-1-0 inset-shadow-white/8 flex size-8 items-center justify-center rounded-lg bg-nero-100">
-                <CheckCircle />
+            <motion.div
+              animate={{
+                opacity: open ? 1 : 0,
+                scale: open ? 1 : 0.85,
+              }}
+              className={cn(
+                'inset-shadow-0-1-0 inset-shadow-white/8',
+                'fixed top-5 right-5 z-50 flex h-15 w-76 items-center justify-center rounded-2xl bg-nero-300',
+                'md:top-8 md:right-12',
+              )}
+              initial={{ opacity: 0, scale: 0.85 }}
+              transition={{
+                opacity: { damping: 20, stiffness: 400 },
+                scale: { damping: 20, stiffness: 400 },
+              }}
+            >
+              <div className="flex h-15 w-76 items-center justify-center gap-3 p-3">
+                <div className="inset-shadow-0-1-0 inset-shadow-white/8 flex size-8 items-center justify-center rounded-lg bg-nero-100">
+                  <CheckCircle />
+                </div>
+                <div className="flex flex-1 flex-col gap-1">
+                  <Toast.Title className="-tracking-[0.03em] font-semibold text-12/4 text-white">
+                    {title}
+                  </Toast.Title>
+                  {description && (
+                    <Toast.Description className="-tracking-[0.03em] font-medium text-12/4 text-dim-gray-100">
+                      {description}
+                    </Toast.Description>
+                  )}
+                </div>
               </div>
-              <div className="flex flex-1 flex-col gap-1">
-                <Toast.Title className="-tracking-[0.03em] font-semibold text-12/4 text-white">
-                  {title}
-                </Toast.Title>
-                {description && (
-                  <Toast.Description className="-tracking-[0.03em] font-medium text-12/4 text-dim-gray-100">
-                    {description}
-                  </Toast.Description>
-                )}
-              </div>
-            </div>
+            </motion.div>
           </Toast.Root>
         )}
         <Toast.Viewport />
