@@ -53,11 +53,11 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
                 <CheckCircle />
               </div>
               <div className="flex flex-1 flex-col gap-1">
-                <Toast.Title className="-tracking-[0.03em] font-semibold text-12 text-white leading-4">
+                <Toast.Title className="-tracking-[0.03em] font-semibold text-12/4 text-white">
                   {title}
                 </Toast.Title>
                 {description && (
-                  <Toast.Description className="-tracking-[0.03em] font-medium text-12 text-dim-gray-100 leading-4">
+                  <Toast.Description className="-tracking-[0.03em] font-medium text-12/4 text-dim-gray-100">
                     {description}
                   </Toast.Description>
                 )}

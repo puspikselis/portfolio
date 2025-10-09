@@ -19,7 +19,7 @@ function BusinessCard({
       </p>
       <div className="flex items-center gap-4">
         <Avatar
-          className="size-12 rounded-[0.75rem] bg-(--color)"
+          className="size-12 rounded-xl bg-(--color)"
           style={{ '--color': business.color || '#1d1d1d' } as React.CSSProperties}
         >
           <AvatarImage alt={`${business.title} logo`} src={business.image} />
@@ -51,7 +51,7 @@ function BusinessCard({
                   className="group inset-shadow-0-1-0 inset-shadow-white/8 h-9 rounded-full bg-nero-100 px-4 font-semibold text-12 text-white hover:bg-nero-200"
                 >
                   <a
-                    className="flex items-center gap-2 [&_svg_path:first-of-type]:group-hover:fill-white [&_svg_path:last-of-type]:group-hover:stroke-black [&_svg_path]:transition-all [&_svg_path]:duration-200 [&_svg_path]:ease-in-out"
+                    className="flex items-center gap-2 [&_svg_path:first-of-type]:group-hover:fill-white [&_svg_path:last-of-type]:group-hover:stroke-black [&_svg_path]:transition-all"
                     href={button.href}
                     rel="noopener noreferrer"
                     target="_blank"
@@ -71,7 +71,7 @@ function BusinessCard({
 export function Businesses() {
   return (
     <section
-      className="inset-shadow-0-1-0 inset-shadow-white/4 mx-auto max-w-152 bg-nero-300 px-5 py-8 md:rounded-[1.5rem] md:px-8"
+      className="inset-shadow-0-1-0 inset-shadow-white/4 mx-auto max-w-152 bg-nero-300 px-5 py-8 md:rounded-3xl md:px-8"
       data-color="var(--color-orange-100)"
       data-title="Side projects"
     >

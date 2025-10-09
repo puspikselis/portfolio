@@ -28,7 +28,7 @@ export default function Home() {
           </p>
           <p className="-tracking-[0.01em] font-medium text-28/10">
             <button
-              className="no-underline transition-opacity duration-200 ease-in-out hover:opacity-80"
+              className="no-underline transition-opacity hover:opacity-80"
               onClick={() => setIsContactOpen(true)}
               type="button"
             >

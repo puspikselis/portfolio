@@ -21,7 +21,7 @@ function ProjectCard({
       </p>
       <div className="relative flex items-center gap-4">
         <Avatar
-          className="size-12 rounded-[0.75rem] bg-(--color)"
+          className="size-12 rounded-xl bg-(--color)"
           style={{ '--color': project.color || '#1d1d1d' } as React.CSSProperties}
         >
           <AvatarImage alt={`${project.title} logo`} src={project.image} />

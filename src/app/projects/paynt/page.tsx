@@ -35,7 +35,7 @@ export default function Paynt() {
                 collateral. I also led the company's rebrand from Paydoo to Paynt in partnership
                 with{' '}
                 <a
-                  className="no-underline transition-opacity duration-200 ease-in-out hover:opacity-80"
+                  className="no-underline transition-opacity hover:opacity-80"
                   href="https://www.asketic.com"
                   rel="noopener noreferrer"
                   target="_blank"

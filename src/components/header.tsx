@@ -16,7 +16,7 @@ export function Header() {
       <header className="fixed inset-x-0 bottom-0 z-1 flex items-center justify-between bg-black p-5 md:sticky md:top-0 md:bg-transparent md:px-12 md:py-8">
         <div className="flex gap-3">
           <Link href="/">
-            <Avatar className="size-9 rounded-[0.75rem] transition-opacity duration-200 ease-in-out hover:opacity-80">
+            <Avatar className="size-9 rounded-xl transition-opacity hover:opacity-80">
               <AvatarImage alt="Kristaps Krūze" className="rounded-none" src="/images/KK.avif" />
               <AvatarFallback>KK</AvatarFallback>
             </Avatar>

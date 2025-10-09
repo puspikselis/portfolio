@@ -20,13 +20,8 @@ const schema = z.object({
 
 type FormValues = z.infer<typeof schema>;
 
-const inputBaseC =
-  'inset-shadow-0-1-0 inset-shadow-white/8 h-11 w-full rounded-2xl bg-nero-100 px-4 py-3 text-15 text-white leading-6 shadow-[0_1px_2px_rgba(0,0,0,.48)] transition-all duration-200 placeholder:text-dim-gray-100 focus:placeholder:opacity-50 focus:outline-none';
-const getInputC = (hasError: boolean) =>
-  cn(
-    inputBaseC,
-    hasError ? 'ring-1 ring-red-500/80 focus:ring-red-500' : 'focus:ring-1 focus:ring-orange-100',
-  );
+const inputC =
+  'inset-shadow-0-1-0 inset-shadow-white/8 h-11 w-full rounded-2xl bg-nero-100 px-4 py-3 text-15/6 text-white shadow-[0_1px_2px_rgba(0,0,0,.48)] transition-all placeholder:text-dim-gray-100 focus:placeholder:opacity-50 focus:outline-none focus:ring-1 focus:ring-orange-100 invalid:ring-1 invalid:ring-red-500/80 invalid:focus:ring-red-500';
 
 export function ContactDialog({ isOpen, onClose }: Props) {
   const { showToast } = useToast();
@@ -107,7 +102,7 @@ export function ContactDialog({ isOpen, onClose }: Props) {
           <div className="relative mx-auto flex min-h-screen max-w-404 items-center justify-center">
             <Dialog.Close
               asChild
-              className="absolute inset-shadow-0-1-0 inset-shadow-white/8 top-5 right-5 z-[60] h-9 rounded-full bg-nero-100 px-5 font-semibold text-12 text-white hover:bg-nero-200 md:top-8 md:right-12"
+              className="absolute inset-shadow-0-1-0 inset-shadow-white/8 top-5 right-5 z-60 h-9 rounded-full bg-nero-100 px-5 font-semibold text-12 text-white hover:bg-nero-200 md:top-8 md:right-12"
             >
               <button type="button">Close</button>
             </Dialog.Close>
@@ -124,14 +119,14 @@ export function ContactDialog({ isOpen, onClose }: Props) {
                     I&apos;d love to hear from you! You can reach me by filling out the form below,
                     or directly via email at{' '}
                     <a
-                      className="text-white transition-opacity duration-200 ease-in-out hover:opacity-80"
+                      className="text-white transition-opacity hover:opacity-80"
                       href="mailto:kristaps@kruze.lv"
                     >
                       kristaps@kruze.lv
                     </a>{' '}
                     or phone{' '}
                     <a
-                      className="text-white transition-opacity duration-200 ease-in-out hover:opacity-80"
+                      className="text-white transition-opacity hover:opacity-80"
                       href="tel:+37129234926"
                     >
                       +371 292 34 926
@@ -153,7 +148,7 @@ export function ContactDialog({ isOpen, onClose }: Props) {
                     <input
                       id="name"
                       {...register('name')}
-                      className={getInputC(!!errors.name)}
+                      className={inputC}
                       placeholder="John Doe"
                       {...(errors.name && {
                         'aria-describedby': 'name-error',
@@ -162,7 +157,7 @@ export function ContactDialog({ isOpen, onClose }: Props) {
                     />
                     {errors.name && (
                       <p
-                        className="-tracking-[0.01em] text-12 text-red-500 leading-4"
+                        className="-tracking-[0.01em] text-12/4 text-red-500"
                         id="name-error"
                       >
                         {errors.name.message}
@@ -181,7 +176,7 @@ export function ContactDialog({ isOpen, onClose }: Props) {
                       id="email"
                       type="email"
                       {...register('email')}
-                      className={getInputC(!!errors.email)}
+                      className={inputC}
                       placeholder="your@email.com"
                       {...(errors.email && {
                         'aria-describedby': 'email-error',
@@ -190,7 +185,7 @@ export function ContactDialog({ isOpen, onClose }: Props) {
                     />
                     {errors.email && (
                       <p
-                        className="-tracking-[0.01em] text-12 text-red-500 leading-4"
+                        className="-tracking-[0.01em] text-12/4 text-red-500"
                         id="email-error"
                       >
                         {errors.email.message}
@@ -210,7 +205,7 @@ export function ContactDialog({ isOpen, onClose }: Props) {
                     id="phone"
                     type="tel"
                     {...register('phone')}
-                    className={inputBaseC}
+                    className={inputC}
                     placeholder="+1 (555) 000-0000"
                   />
                 </div>
@@ -225,7 +220,7 @@ export function ContactDialog({ isOpen, onClose }: Props) {
                   <textarea
                     id="message"
                     {...register('message')}
-                    className={cn(getInputC(!!errors.message), 'h-auto min-h-24 resize-y')}
+                    className={cn(inputC, 'h-auto min-h-24 resize-y')}
                     placeholder="I'm looking for help with..."
                     {...(errors.message && {
                       'aria-describedby': 'message-error',
@@ -233,12 +228,12 @@ export function ContactDialog({ isOpen, onClose }: Props) {
                     })}
                   />
                   {errors.message && (
-                    <p
-                      className="-tracking-[0.01em] text-12 text-red-500 leading-4"
-                      id="message-error"
-                    >
-                      {errors.message.message}
-                    </p>
+                      <p
+                        className="-tracking-[0.01em] text-12/4 text-red-500"
+                        id="message-error"
+                      >
+                        {errors.message.message}
+                      </p>
                   )}
                 </div>
 
@@ -254,7 +249,7 @@ export function ContactDialog({ isOpen, onClose }: Props) {
                 />
 
                 <button
-                  className="inset-shadow-0-1-0 inset-shadow-white/8 h-12 rounded-full bg-white px-6 font-semibold text-13 text-nero-100 leading-4 hover:bg-white/90 disabled:cursor-not-allowed disabled:bg-nero-300 disabled:text-dim-gray-100 disabled:opacity-50"
+                  className="inset-shadow-0-1-0 inset-shadow-white/8 h-12 rounded-full bg-white px-6 font-semibold text-13/4 text-nero-100 hover:bg-white/90 disabled:cursor-not-allowed disabled:bg-nero-300 disabled:text-dim-gray-100 disabled:opacity-50"
                   disabled={isSubmitting || !isValid}
                   type="submit"
                 >

@@ -30,7 +30,7 @@ export function SpotifyStatus() {
   if (!data) {
     return (
       <>
-        <Link className="transition-opacity duration-200 ease-in-out hover:opacity-80" href="/">
+        <Link className="transition-opacity hover:opacity-80" href="/">
           <h1 className="font-semibold text-13/4 text-white">Kristaps Krūze</h1>
         </Link>
         <h2 className="-tracking-[0.03em] font-medium text-12/4 text-dim-gray-100">Designer</h2>
@@ -40,11 +40,11 @@ export function SpotifyStatus() {
 
   return (
     <div className="flex flex-col gap-0.5">
-      <Link className="transition-opacity duration-200 ease-in-out hover:opacity-80" href="/">
+      <Link className="transition-opacity hover:opacity-80" href="/">
         <h1 className="font-semibold text-13/4 text-white">Kristaps Krūze</h1>
       </Link>
       <a
-        className="flex items-center gap-1.5 transition-opacity duration-200 ease-in-out hover:opacity-70"
+        className="flex items-center gap-1.5 transition-opacity hover:opacity-70"
         href={data.songUrl}
         rel="noopener noreferrer"
         target="_blank"
@@ -52,7 +52,7 @@ export function SpotifyStatus() {
         <div className="text-dim-gray-100">
           <Note />
         </div>
-        <div className="relative max-w-[80px] overflow-hidden">
+        <div className="relative max-w-20 overflow-hidden">
           <div className="-tracking-[0.03em] animate-marquee whitespace-nowrap font-medium text-12/4">
             <span className="pr-6">
               <span className="text-nobel-100">Listening to </span>
