@@ -1,5 +1,9 @@
-import Link from 'next/link';
+'use client';
 
+import Link from 'next/link';
+import type { CSSProperties } from 'react';
+
+import { useCursorPreview } from '@/components/cursor-preview';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { projects } from '@/data/projects';
@@ -11,6 +15,18 @@ function ProjectCard({
   project: (typeof projects)[number];
   isFirst?: boolean;
 }) {
+  const { hidePreview, showPreview } = useCursorPreview();
+
+  const previewColor = project.color || '#1d1d1d';
+  const hasDetailPage = Boolean(project.slug);
+  const isComingSoon = project.id === 2;
+  const buttonLabel = hasDetailPage ? 'View' : isComingSoon ? 'Soon' : 'Archive';
+
+  const handlePointerEnter = () => {
+    if (!hasDetailPage || !project.preview) return;
+    showPreview(previewColor, project.preview);
+  };
+
   return (
     <div className="space-y-6">
       <p
@@ -19,42 +35,46 @@ function ProjectCard({
       >
         {project.year}
       </p>
-      <div className="relative flex items-center gap-4">
+      <div
+        className="relative flex items-center gap-4"
+        onPointerEnter={handlePointerEnter}
+        onPointerLeave={hidePreview}
+      >
         <Avatar
-          className="size-12 rounded-[0.75rem] bg-(--color)"
-          style={{ '--color': project.color || '#1d1d1d' } as React.CSSProperties}
+          className="size-12 rounded-xl bg-(--color)"
+          style={{ '--color': previewColor } as CSSProperties}
         >
           <AvatarImage alt={`${project.title} logo`} src={project.image} />
-          <AvatarFallback className="bg-transparent text-15 text-white/20">
+          <AvatarFallback className="-tracking-[0.02em] bg-transparent text-15 text-white/20">
             {project.Icon ? <project.Icon /> : '?'}
           </AvatarFallback>
         </Avatar>
-        <div className="space-y-1">
-          <h4 className="-tracking-[0.02em] font-semibold text-15/6 text-white">{project.title}</h4>
-          <ul className="flex">
+        <div className="min-w-0 flex-1 space-y-1">
+          <h4 className="-tracking-[0.02em] truncate font-semibold text-15/6 text-white">
+            {project.title}
+          </h4>
+          <ul className="flex min-w-0">
             {project.tags.map((tag) => (
               <li
-                className="flex items-center not-first:*:text-dim-gray-100 not-first:before:mx-2 not-first:before:block not-first:before:size-1 not-first:before:bg-nero-100 not-first:before:content-['']"
+                className="flex min-w-0 items-center not-first:*:text-dim-gray-100 not-first:before:mx-2 not-first:before:block not-first:before:size-1 not-first:before:shrink-0 not-first:before:bg-nero-100 not-first:before:content-['']"
                 key={tag}
               >
-                <span className="-tracking-[0.02em] text-15/6">{tag}</span>
+                <span className="-tracking-[0.02em] truncate text-15/6">{tag}</span>
               </li>
             ))}
           </ul>
         </div>
         <Button
-          asChild={!!project.slug}
+          asChild={hasDetailPage}
           className="inset-shadow-0-1-0 inset-shadow-white/8 ml-auto h-9 rounded-full bg-nero-100 px-5 font-semibold text-12 text-white hover:bg-nero-200 disabled:bg-nero-300 disabled:text-dim-gray-100"
-          disabled={!project.slug}
+          disabled={!hasDetailPage}
         >
-          {project.slug ? (
+          {hasDetailPage ? (
             <Link className="link-overlay" href={`/projects/${project.slug}`}>
-              View
+              {buttonLabel}
             </Link>
-          ) : project.id === 2 ? (
-            'Soon'
           ) : (
-            'Archive'
+            buttonLabel
           )}
         </Button>
       </div>

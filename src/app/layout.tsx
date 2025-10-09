@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
+import { CursorPreviewProvider } from '@/components/cursor-preview';
 import { GridOverlay } from '@/components/grid-overlay';
 import { Header } from '@/components/header';
+import { ToastProvider } from '@/components/ui/toast';
 
 import './globals.css';
 
@@ -29,11 +31,15 @@ export default function RootLayout({
       style={{ '--default-font-family': inter.style.fontFamily } as React.CSSProperties}
     >
       <body className="relative">
-        <GridOverlay />
-        <div className="relative mx-auto max-w-404 border-nero-500 border-r border-l">
-          <Header />
-          {children}
-        </div>
+        <ToastProvider>
+          <CursorPreviewProvider>
+            <GridOverlay />
+            <div className="relative mx-auto max-w-404 border-nero-500 border-r border-l">
+              <Header />
+              {children}
+            </div>
+          </CursorPreviewProvider>
+        </ToastProvider>
       </body>
     </html>
   );
