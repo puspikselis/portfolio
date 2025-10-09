@@ -37,12 +37,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
       <Toast.Provider swipeDirection="up">
         {children}
         {title && (
-          <Toast.Root
-            asChild
-            duration={4000}
-            onOpenChange={setOpen}
-            open={open}
-          >
+          <Toast.Root asChild duration={4000} onOpenChange={setOpen} open={open}>
             <motion.div
               animate={{
                 opacity: open ? 1 : 0,
