@@ -1,7 +1,3 @@
-'use client';
-
-import { useState } from 'react';
-
 import { QuoteIcon } from '@/components/icons/quote-icon';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
@@ -15,9 +11,7 @@ interface TestimonialProps {
 }
 
 export function Testimonial({ author, children }: TestimonialProps) {
-  const [isExpanded, setIsExpanded] = useState(false);
   const paragraphs = children.split('\n\n').filter(Boolean);
-  const hasMultiple = paragraphs.length > 1;
 
   return (
     <section className="narrow-container" data-title="Reference">
@@ -26,33 +20,23 @@ export function Testimonial({ author, children }: TestimonialProps) {
           <QuoteIcon className="size-5 text-dim-gray-100" />
         </div>
 
-        <div data-expanded={isExpanded}>
-          {paragraphs.map((paragraph, index) => (
-            <p
-              className="-tracking-[0.01em] not-first:pointer-events-none not-first:h-0 not-first:overflow-hidden font-medium text-28/10 text-white not-first:opacity-0 transition-all duration-500 [[data-expanded=true]_&]:not-first:pointer-events-auto [[data-expanded=true]_&]:not-first:mt-4 [[data-expanded=true]_&]:not-first:h-auto [[data-expanded=true]_&]:not-first:opacity-100"
-              key={paragraph.slice(0, 50)}
-            >
-              {paragraph}
-              {index === 0 && hasMultiple && (
-                <button
-                  className="-tracking-[0.01em] ml-1 font-medium text-28/10 text-dim-gray-100 transition-colors hover:text-nobel-100 [[data-expanded=true]_&]:hidden"
-                  onClick={() => setIsExpanded(!isExpanded)}
-                  type="button"
-                >
-                  Read all
-                </button>
-              )}
-              {index === paragraphs.length - 1 && hasMultiple && (
-                <button
-                  className="-tracking-[0.01em] ml-1 font-medium text-28/10 text-dim-gray-100 transition-colors hover:text-nobel-100 [[data-expanded=false]_&]:hidden"
-                  onClick={() => setIsExpanded(!isExpanded)}
-                  type="button"
-                >
-                  Read less
-                </button>
-              )}
-            </p>
-          ))}
+        <div className="space-y-4">
+          {paragraphs.map((paragraph) => {
+            const lines = paragraph.split('\n');
+            return (
+              <p
+                className="-tracking-[0.01em] not-first:-tracking-[0.02em] font-medium not-first:text-15/7 not-first:text-nobel-100 text-28/10 text-white"
+                key={paragraph.slice(0, 50)}
+              >
+                {lines.map((line) => (
+                  <span key={line.slice(0, 30)}>
+                    {line}
+                    {line !== lines[lines.length - 1] && <br />}
+                  </span>
+                ))}
+              </p>
+            );
+          })}
         </div>
 
         <div className="mt-9 flex items-center gap-3 pb-2">

@@ -10,7 +10,7 @@ type Config = { color: string; description: string; title: string };
 const DEFAULT_STICKY_TOP_FALLBACK = 160;
 const DEFAULT_DASH = 'var(--color-dim-gray-100)';
 const HYSTERESIS = 4;
-const BOTTOM_THRESHOLD_PX = 200; // Fixed pixel threshold instead of percentage
+const BOTTOM_THRESHOLD_PX = 100; // Fixed pixel threshold instead of percentage
 
 export function FloatingThingy() {
   const [config, setConfig] = useState<Config>({

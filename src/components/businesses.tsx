@@ -1,30 +1,13 @@
 'use client';
 
 import type { CSSProperties } from 'react';
-import { useMemo } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useCursorPreview } from '@/components/cursor-preview';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { businesses } from '@/data/businesses';
 import { cn } from '@/lib/utils';
-
-function useIsMobile() {
-  return useMemo(() => {
-    if (typeof window === 'undefined') return false;
-    return window.innerWidth < 768;
-  }, []);
-}
-
-function useDeviceType() {
-  return useMemo(() => {
-    if (typeof window === 'undefined') return null;
-    const userAgent = window.navigator.userAgent.toLowerCase();
-    const isIOS = /iphone|ipad|ipod/.test(userAgent);
-    const isAndroid = /android/.test(userAgent);
-    return { isAndroid, isIOS };
-  }, []);
-}
 
 function BusinessCard({
   business,
@@ -34,30 +17,29 @@ function BusinessCard({
   isFirst?: boolean;
 }) {
   const { hidePreview, showPreview } = useCursorPreview();
-  const isMobile = useIsMobile();
-  const deviceType = useDeviceType();
-
   const previewColor = business.color || '#1d1d1d';
 
-  // Filter buttons based on device on mobile
-  const filteredButtons = useMemo(() => {
-    if (!isMobile || !deviceType) return business.buttons;
+  const [filteredButtons, setFilteredButtons] = useState(business.buttons);
 
-    // If there are App Store and Play Store buttons, show only the relevant one
+  useEffect(() => {
+    const isMobile = window.innerWidth < 768;
+    if (!isMobile) return;
+
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    const isAndroid = /android/.test(userAgent);
+    const isIOS = /iphone|ipad|ipod/.test(userAgent);
+
     const hasAppStore = business.buttons.some((btn) => btn.label === 'App Store');
     const hasPlayStore = business.buttons.some((btn) => btn.label === 'PlayStore');
 
     if (hasAppStore && hasPlayStore) {
-      if (deviceType.isIOS) {
-        return business.buttons.filter((btn) => btn.label === 'App Store');
-      }
-      if (deviceType.isAndroid) {
-        return business.buttons.filter((btn) => btn.label === 'PlayStore');
+      if (isIOS) {
+        setFilteredButtons(business.buttons.filter((btn) => btn.label === 'App Store'));
+      } else if (isAndroid) {
+        setFilteredButtons(business.buttons.filter((btn) => btn.label === 'PlayStore'));
       }
     }
-
-    return business.buttons;
-  }, [isMobile, deviceType, business.buttons]);
+  }, [business.buttons]);
 
   const primaryButton = filteredButtons[0];
   const isCardInteractive = Boolean(business.cardHref);
@@ -143,7 +125,9 @@ function BusinessCard({
                             )
                         : undefined
                     }
-                    onPointerLeave={button.preview ? hidePreview : undefined}
+                    onPointerLeave={
+                      button.preview && !business.previewOnCardHover ? hidePreview : undefined
+                    }
                     rel="noopener noreferrer"
                     target="_blank"
                   >
