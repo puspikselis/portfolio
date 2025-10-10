@@ -18,7 +18,7 @@ export default function Chip() {
       <div className="pt-15 pb-40 md:pb-80">
         <main
           className="narrow-container"
-          data-color="var(--color-dim-gray-100)"
+          data-color="var(--color-chip-100)"
           data-title="Intro"
         >
           <div>
@@ -53,6 +53,7 @@ export default function Chip() {
             <img
               alt={image.alt}
               className="rounded-3xl"
+              data-color="var(--color-chip-100)"
               data-title={image.title}
               key={image.id}
               src={image.src}

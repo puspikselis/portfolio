@@ -32,6 +32,19 @@ export function Header() {
           >
             <a
               className="flex items-center gap-2 hover:text-white"
+              href="/documents/kristaps-kruze-resume.pdf"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Resume
+            </a>
+          </Button>
+          <Button
+            asChild
+            className="h-9 bg-transparent font-semibold text-12 text-nobel-100 hover:bg-transparent"
+          >
+            <a
+              className="flex items-center gap-2 hover:text-white"
               href="https://www.linkedin.com/in/kristapskruze/"
               rel="noopener noreferrer"
               target="_blank"
