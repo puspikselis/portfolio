@@ -16,11 +16,7 @@ export default function Chip() {
     <>
       <FloatingThingy />
       <div className="pt-15 pb-40 md:pb-80">
-        <main
-          className="narrow-container"
-          data-color="var(--color-chip-100)"
-          data-title="Intro"
-        >
+        <main className="narrow-container" data-color="var(--color-chip-100)" data-title="Intro">
           <div>
             <p className="font-medium text-13/4 text-dim-gray-100">2018</p>
             <h3 className="-tracking-[0.01em] mt-2 font-medium text-28/10 text-white">Chip</h3>

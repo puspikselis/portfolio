@@ -9,6 +9,21 @@ export const tags = [
   'Design QA',
 ];
 
+export const testimonial = {
+  author: {
+    image: '/images/centus/henry-reference.jpg',
+    name: 'Henry A. Simmons',
+    title: 'CEO of Centus',
+  },
+  text: `I am pleased to recommend Kristaps Kruze for his outstanding work as a designer at Centus. During his time with us, Kristaps consistently demonstrated exceptional creativity, technical skill, and professionalism in every project he undertook.
+
+Kristaps played a key role in enhancing the Centus brand through thoughtful design, seamless user experiences, and innovative interface solutions. His understanding of modern design principles, combined with his attention to detail, allowed him to deliver digital products that were both visually compelling and highly functional. He also collaborated effectively with our developers and marketing team, ensuring that design concepts aligned perfectly with business objectives and technical requirements.
+
+Beyond his design expertise, Kristaps stood out for his work ethic and proactive attitude. He approached challenges with enthusiasm, always striving to improve both the user experience and the company's digital presence. His reliability, communication skills, and positive outlook made him a valued member of our team.
+
+I have no doubt that Kristaps will bring the same level of creativity, discipline, and passion to any future position he pursues. He would be an excellent addition to any organization looking for a talented and dedicated web designer.`,
+};
+
 export const images = [
   {
     alt: 'Centus localization platform website',

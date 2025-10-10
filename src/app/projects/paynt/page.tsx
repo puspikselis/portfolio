@@ -16,11 +16,7 @@ export default function Paynt() {
     <>
       <FloatingThingy />
       <div className="pt-15 pb-40 md:pb-80">
-        <main
-          className="narrow-container"
-          data-color="var(--color-paynt-100)"
-          data-title="Intro"
-        >
+        <main className="narrow-container" data-color="var(--color-paynt-100)" data-title="Intro">
           <div>
             <p className="font-medium text-13/4 text-dim-gray-100">2018 - 2021</p>
             <h3 className="-tracking-[0.01em] mt-2 font-medium text-28/10 text-white">Paynt</h3>

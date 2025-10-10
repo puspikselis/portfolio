@@ -2,8 +2,9 @@ import type { Metadata } from 'next';
 
 import { FloatingThingy } from '@/components/floating-thingy';
 import { Projects } from '@/components/projects';
+import { Testimonial } from '@/components/testimonial';
 
-import { images, tags } from './data';
+import { images, tags, testimonial } from './data';
 
 export const metadata: Metadata = {
   description:
@@ -60,6 +61,9 @@ export default function Centus() {
             />
           ))}
         </section>
+        <div className="mt-20 md:mt-35">
+          <Testimonial author={testimonial.author}>{testimonial.text}</Testimonial>
+        </div>
         <div className="mt-20 md:mt-35">
           <Projects excludeSlug="centus" />
         </div>
