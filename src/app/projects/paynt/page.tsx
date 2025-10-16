@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
-import { FloatingThingy } from '@/components/floating-thingy';
+import { FloatingThingy } from '@/components/features/floating-thingy';
 import { Projects } from '@/components/projects';
-import { Testimonial } from '@/components/testimonial';
+import { Testimonial } from '@/components/ui/testimonial';
 
 import { images, tags, testimonial } from './data';
 
@@ -16,7 +16,7 @@ export default function Paynt() {
   return (
     <>
       <FloatingThingy />
-      <div className="pt-15 pb-40 md:pb-80">
+      <div className="pt-15 pb-42">
         <main className="narrow-container" data-color="var(--color-paynt-100)" data-title="Intro">
           <div>
             <p className="font-medium text-13/4 text-dim-gray-100">2018 - 2021</p>

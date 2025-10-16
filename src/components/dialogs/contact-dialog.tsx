@@ -110,9 +110,9 @@ export function ContactDialog({ isOpen, onClose }: Props) {
             <div className="w-full max-w-136 space-y-12 px-8 py-12">
               <div className="space-y-2">
                 <Dialog.Title asChild>
-                  <h1 className="-tracking-[0.01em] font-medium text-28/10 text-white">
+                  <h2 className="-tracking-[0.01em] font-medium text-28/10 text-white">
                     Get in touch
-                  </h1>
+                  </h2>
                 </Dialog.Title>
                 <Dialog.Description asChild>
                   <p className="-tracking-[0.02em] text-15/7 text-nobel-100">

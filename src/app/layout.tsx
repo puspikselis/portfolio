@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import { CursorPreviewProvider } from '@/components/cursor-preview';
+import { CursorPreviewProvider } from '@/components/features/cursor-preview';
+import { GridOverlay } from '@/components/features/grid-overlay';
 import { Footer } from '@/components/footer';
-import { GridOverlay } from '@/components/grid-overlay';
 import { Header } from '@/components/header';
 import { ToastProvider } from '@/components/ui/toast';
 

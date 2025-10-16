@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 import { ContactDialog } from '@/components/dialogs/contact-dialog';
-import { SpotifyStatus } from '@/components/spotify-status';
+import { SpotifyStatus } from '@/components/features/spotify-status';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 export function Header() {

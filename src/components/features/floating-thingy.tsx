@@ -237,7 +237,7 @@ export function FloatingThingy() {
           ref={floatingRef}
           style={style}
         >
-          {config.title && <h6 className="font-medium text-13/4 text-white">{config.title}</h6>}
+          {config.title && <div className="font-medium text-13/4 text-white">{config.title}</div>}
           {config.description && (
             <p className="-tracking-[0.03em] max-w-45 font-medium text-12/5 text-dim-gray-100">
               {config.description}

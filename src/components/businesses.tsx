@@ -3,7 +3,7 @@
 import type { CSSProperties } from 'react';
 import { useEffect, useState } from 'react';
 
-import { useCursorPreview } from '@/components/cursor-preview';
+import { useCursorPreview } from '@/components/features/cursor-preview';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { businesses } from '@/data/businesses';
@@ -73,14 +73,14 @@ function BusinessCard({
           </AvatarFallback>
         </Avatar>
         <div className="space-y-1">
-          <h4
+          <h3
             className={cn(
               '-tracking-[0.02em] font-semibold text-15/6 text-white',
               isCardInteractive && 'cursor-pointer',
             )}
           >
             {business.title}
-          </h4>
+          </h3>
           <ul className="flex">
             {business.tags.map((tag) => (
               <li

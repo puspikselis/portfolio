@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
-import { FloatingThingy } from '@/components/floating-thingy';
+import { FloatingThingy } from '@/components/features/floating-thingy';
 import { Projects } from '@/components/projects';
-import { Testimonial } from '@/components/testimonial';
+import { Testimonial } from '@/components/ui/testimonial';
 
 import { images, tags, testimonial } from './data';
 
@@ -16,7 +16,7 @@ export default function Centus() {
   return (
     <>
       <FloatingThingy />
-      <div className="pt-15 pb-40 md:pb-80">
+      <div className="pt-15 pb-42">
         <main
           className="narrow-container"
           data-color="var(--color-dim-gray-100)"

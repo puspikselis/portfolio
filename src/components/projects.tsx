@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import type { CSSProperties } from 'react';
 
-import { useCursorPreview } from '@/components/cursor-preview';
+import { useCursorPreview } from '@/components/features/cursor-preview';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { projects } from '@/data/projects';
@@ -50,9 +50,9 @@ function ProjectCard({
           </AvatarFallback>
         </Avatar>
         <div className="min-w-0 flex-1 space-y-1">
-          <h4 className="-tracking-[0.02em] truncate font-semibold text-15/6 text-white">
+          <h3 className="-tracking-[0.02em] truncate font-semibold text-15/6 text-white">
             {project.title}
-          </h4>
+          </h3>
           <ul className="flex min-w-0">
             {project.tags.map((tag) => (
               <li

@@ -1,0 +1,14 @@
+# Allow all crawlers to access public content
+User-agent: *
+Allow: /
+
+# Block all images from being indexed
+Disallow: /images/
+Disallow: /originals/
+
+# Prevent indexing of audio assets
+Disallow: /audio/
+
+# Sitemap location
+Sitemap: https://kristaps.kruze.lv/sitemap.xml
+

@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { Businesses } from '@/components/businesses';
 import { ContactDialog } from '@/components/dialogs/contact-dialog';
-import { FloatingThingy } from '@/components/floating-thingy';
+import { FloatingThingy } from '@/components/features/floating-thingy';
 import { Projects } from '@/components/projects';
 
 export default function Home() {
@@ -13,16 +13,16 @@ export default function Home() {
   return (
     <>
       <FloatingThingy />
-      <div className="pt-13 pb-15 md:pb-37">
+      <div className="pt-13 pb-42">
         <main
           className="narrow-container space-y-4"
           data-color="var(--color-orange-100)"
           data-title="Intro"
         >
-          <p className="-tracking-[0.01em] font-medium text-28/10 text-white">
+          <h1 className="-tracking-[0.01em] font-medium text-28/10 text-white">
             Product designer with 10+ years of experience based in Latvia. I design digital products
             people enjoy using.
-          </p>
+          </h1>
           <p className="-tracking-[0.01em] font-medium text-28/10">
             Passion and persistence drive what I build - from my own ventures to projects with
             clients worldwide.

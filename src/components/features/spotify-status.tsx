@@ -31,9 +31,9 @@ export function SpotifyStatus() {
     return (
       <>
         <Link className="transition-opacity hover:opacity-80" href="/">
-          <h1 className="font-semibold text-13/4 text-white">Kristaps Krūze</h1>
+          <div className="font-semibold text-13/4 text-white">Kristaps Krūze</div>
         </Link>
-        <h2 className="-tracking-[0.03em] font-medium text-12/4 text-dim-gray-100">Designer</h2>
+        <div className="-tracking-[0.03em] font-medium text-12/4 text-dim-gray-100">Designer</div>
       </>
     );
   }
@@ -41,9 +41,10 @@ export function SpotifyStatus() {
   return (
     <div className="flex flex-col gap-0.5">
       <Link className="transition-opacity hover:opacity-80" href="/">
-        <h1 className="font-semibold text-13/4 text-white">Kristaps Krūze</h1>
+        <div className="font-semibold text-13/4 text-white">Kristaps Krūze</div>
       </Link>
       <a
+        aria-label={`Currently listening to ${data.title} by ${data.artist} on Spotify`}
         className="flex items-center gap-1.5 transition-opacity hover:opacity-70"
         href={data.songUrl}
         rel="noopener noreferrer"
