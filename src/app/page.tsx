@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
       <FloatingThingy />
-      <div className="pt-13 pb-40 md:pb-80">
+      <div className="pt-13 pb-15 md:pb-37">
         <main
           className="narrow-container space-y-4"
           data-color="var(--color-orange-100)"

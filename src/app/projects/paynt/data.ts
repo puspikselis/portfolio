@@ -10,6 +10,21 @@ export const tags = [
   'Stakeholder management',
 ];
 
+export const testimonial = {
+  author: {
+    image: '/images/paynt/sam-reference.jpg',
+    name: 'Sam Kohli',
+    title: 'Founder & Paynt Group CEO',
+  },
+  text: `I am pleased to recommend Kristaps Kruze, who worked as a UI/UX Designer at Paynt, a leading fintech platform specializing on digital payments and embedded finance solutions.
+
+I have personally known Kristaps for over 10 years and in that time he has worked as both a consultant and full time employee consistently demonstrating exceptional creativity, technical ability, and strategic thinking.
+
+He has worked across our products as well as brand, bringing his own perspective to our approach and always coming up with well researched and thought through ideas. He brought a strong understanding of user behaviour that he translated through to his designs.
+
+Kristaps was an engaged and valued team member during his time at Paynt and I am happy to recommend him.`,
+};
+
 export const images = [
   {
     alt: 'Paynt marketing website',

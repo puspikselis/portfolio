@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
 import { CursorPreviewProvider } from '@/components/cursor-preview';
+import { Footer } from '@/components/footer';
 import { GridOverlay } from '@/components/grid-overlay';
 import { Header } from '@/components/header';
 import { ToastProvider } from '@/components/ui/toast';
@@ -37,6 +38,7 @@ export default function RootLayout({
             <div className="relative mx-auto max-w-404 border-nero-500 border-r border-l">
               <Header />
               {children}
+              <Footer />
             </div>
           </CursorPreviewProvider>
         </ToastProvider>

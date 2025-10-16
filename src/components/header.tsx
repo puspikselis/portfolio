@@ -6,7 +6,6 @@ import { useState } from 'react';
 import { ContactDialog } from '@/components/dialogs/contact-dialog';
 import { SpotifyStatus } from '@/components/spotify-status';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
 
 export function Header() {
   const [isContactOpen, setIsContactOpen] = useState(false);
@@ -15,7 +14,7 @@ export function Header() {
     <>
       <header className="fixed inset-x-0 bottom-0 z-20 flex items-center justify-between bg-black p-5 md:sticky md:top-0 md:bg-transparent md:px-12 md:py-8">
         <div className="flex gap-3">
-          <Link href="/">
+          <Link className="focus:outline-none md:focus:outline-auto" href="/">
             <Avatar className="size-9 rounded-xl transition-opacity hover:opacity-80">
               <AvatarImage alt="Kristaps Krūze" className="rounded-none" src="/images/KK.avif" />
               <AvatarFallback>KK</AvatarFallback>
@@ -25,39 +24,42 @@ export function Header() {
             <SpotifyStatus />
           </div>
         </div>
-        <div className="flex items-center gap-5">
-          <Button
-            asChild
-            className="h-9 bg-transparent font-semibold text-12 text-nobel-100 hover:bg-transparent"
+        <div className="flex items-center md:gap-5">
+          <select
+            aria-label="Links"
+            className="appearance-none font-semibold text-12 text-nobel-100 focus:outline-none md:hidden"
+            onChange={(e) => {
+              e.target.value && window.open(e.target.value, '_blank');
+              e.target.value = '';
+            }}
           >
-            <a
-              className="flex items-center gap-2 hover:text-white"
-              href="/documents/kristaps-kruze-resume.pdf"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Resume
-            </a>
-          </Button>
-          <Button
-            asChild
-            className="h-9 bg-transparent font-semibold text-12 text-nobel-100 hover:bg-transparent"
+            <option value="">Links</option>
+            <option value="/documents/kristaps-kruze-resume.pdf">Resume</option>
+            <option value="https://www.linkedin.com/in/kristapskruze/">LinkedIn</option>
+          </select>
+          <a
+            className="hidden font-semibold text-12 text-nobel-100 hover:text-white md:block"
+            href="/documents/kristaps-kruze-resume.pdf"
+            rel="noopener noreferrer"
+            target="_blank"
           >
-            <a
-              className="flex items-center gap-2 hover:text-white"
-              href="https://www.linkedin.com/in/kristapskruze/"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              LinkedIn
-            </a>
-          </Button>
-          <Button
-            className="inset-shadow-0-1-0 inset-shadow-white/8 h-9 gap-2 rounded-full bg-nero-100 px-5 font-semibold text-12 text-white hover:bg-nero-200"
+            Resume
+          </a>
+          <a
+            className="hidden font-semibold text-12 text-nobel-100 hover:text-white md:block"
+            href="https://www.linkedin.com/in/kristapskruze/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            LinkedIn
+          </a>
+          <button
+            className="inset-shadow-0-1-0 inset-shadow-white/8 h-9 rounded-full bg-nero-100 px-5 font-semibold text-12 text-white hover:bg-nero-200 focus:outline-none md:focus:outline-auto"
             onClick={() => setIsContactOpen(true)}
+            type="button"
           >
             Contact
-          </Button>
+          </button>
         </div>
       </header>
       <ContactDialog isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />

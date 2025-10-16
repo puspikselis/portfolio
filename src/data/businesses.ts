@@ -46,6 +46,6 @@ export const businesses = [
     previewOnCardHover: true,
     tags: ['Eloking', 'eSports'],
     title: 'Co-founder',
-    year: 'Operating since 2021',
+    year: '2021 - 2025',
   },
 ];
