@@ -56,7 +56,7 @@ function ProjectCard({
           <ul className="flex min-w-0">
             {project.tags.map((tag) => (
               <li
-                className="flex min-w-0 items-center not-first:*:text-dim-gray-100 not-first:before:mx-2 not-first:before:block not-first:before:size-1 not-first:before:shrink-0 not-first:before:bg-nero-100 not-first:before:content-['']"
+                className="flex min-w-0 items-center not-first:*:text-dim-gray-100 not-first:before:mx-2 not-first:before:block not-first:before:size-1 not-first:before:shrink-0 not-first:before:rounded-full not-first:before:bg-nero-100 not-first:before:content-['']"
                 key={tag}
               >
                 <span className="-tracking-[0.02em] truncate text-15/6">{tag}</span>

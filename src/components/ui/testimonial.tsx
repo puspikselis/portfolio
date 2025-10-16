@@ -16,7 +16,7 @@ export function Testimonial({ author, children }: TestimonialProps) {
   return (
     <section className="narrow-container" data-title="Reference">
       <div className="relative">
-        <div className="-left-24 absolute top-2">
+        <div className="md:-left-24 mb-9 md:absolute md:top-2 md:mb-0">
           <QuoteIcon className="size-5 text-dim-gray-100" />
         </div>
 

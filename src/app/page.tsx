@@ -28,7 +28,7 @@ export default function Home() {
             clients worldwide.
           </p>
         </main>
-        <div className="mt-20 md:mt-35">
+        <div className="mt-20 md:mt-[8.375rem]">
           <Projects />
         </div>
         <div className="mt-20 md:mt-37">

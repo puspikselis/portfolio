@@ -57,7 +57,7 @@ export default function Chip() {
             />
           ))}
         </section>
-        <div className="mt-20 md:mt-35">
+        <div className="mt-20 md:mt-37">
           <Projects excludeSlug="chip" />
         </div>
       </div>

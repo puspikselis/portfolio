@@ -84,7 +84,7 @@ function BusinessCard({
           <ul className="flex">
             {business.tags.map((tag) => (
               <li
-                className="flex items-center not-first:*:text-dim-gray-100 not-first:before:mx-2 not-first:before:block not-first:before:size-1 not-first:before:bg-nero-100 not-first:before:content-['']"
+                className="flex items-center not-first:*:text-dim-gray-100 not-first:before:mx-2 not-first:before:block not-first:before:size-1 not-first:before:rounded-full not-first:before:bg-nero-100 not-first:before:content-['']"
                 key={tag}
               >
                 <span className="-tracking-[0.02em] text-15/6">{tag}</span>

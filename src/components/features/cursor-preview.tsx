@@ -92,21 +92,23 @@ export function CursorPreviewProvider({ children }: { children: ReactNode }) {
       {children}
       <motion.div
         animate={{
+          filter: state.isVisible ? 'blur(0px)' : 'blur(8px)',
           opacity: state.isVisible ? 1 : 0,
           scale: state.isVisible ? 1 : 0.85,
           x: state.x + 12,
           y: state.y + 12,
         }}
         className="pointer-events-none fixed top-0 left-0 z-50 overflow-hidden rounded-2xl shadow-2xl"
-        initial={{ opacity: 0, scale: 0.85 }}
+        initial={{ filter: 'blur(8px)', opacity: 0, scale: 0.85 }}
         style={{
           backgroundColor: state.color,
           height: state.height,
           width: state.width,
         }}
         transition={{
-          opacity: { damping: 20, stiffness: 400 },
-          scale: { damping: 20, stiffness: 400 },
+          filter: { damping: 15, delay: state.isVisible ? 0.03 : 0, stiffness: 500 },
+          opacity: { damping: 15, stiffness: 600 },
+          scale: { damping: 15, stiffness: 600 },
           x: SPRING_CONFIG,
           y: SPRING_CONFIG,
         }}

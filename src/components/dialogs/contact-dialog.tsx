@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as Dialog from '@radix-ui/react-dialog';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -79,26 +80,36 @@ export function ContactDialog({ isOpen, onClose }: Props) {
       }}
       open={isOpen}
     >
-      <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-30">
-          <div className="-translate-x-1/2 fixed inset-y-0 left-1/2 w-full max-w-404">
-            <div
-              className={cn(
-                'mx-px h-full bg-black/95 backdrop-blur-sm',
-                'data-[state=open]:fade-in-0 data-[state=open]:animate-in',
-                'data-[state=closed]:fade-out-0 data-[state=closed]:animate-out',
-              )}
-            />
-          </div>
-        </Dialog.Overlay>
-        <Dialog.Content
-          className={cn(
-            'fixed inset-0 z-40 overflow-y-auto',
-            'data-[state=open]:fade-in-0 data-[state=open]:slide-in-from-bottom-2 data-[state=open]:animate-in',
-            'data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-bottom-2 data-[state=closed]:animate-out',
-          )}
-          onOpenAutoFocus={(e) => e.preventDefault()}
-        >
+      <AnimatePresence>
+        {isOpen && (
+          <Dialog.Portal forceMount>
+            <Dialog.Overlay asChild forceMount>
+              <motion.div
+                animate={{ opacity: 1 }}
+                className="fixed inset-0 z-30"
+                exit={{ opacity: 0 }}
+                initial={{ opacity: 0 }}
+                transition={{ duration: 0.2, ease: 'easeInOut' }}
+              >
+                <div className="-translate-x-1/2 fixed inset-y-0 left-1/2 w-full max-w-404">
+                  <div className="mx-px h-full bg-black/95 backdrop-blur-sm" />
+                </div>
+              </motion.div>
+            </Dialog.Overlay>
+            <Dialog.Content asChild forceMount onOpenAutoFocus={(e) => e.preventDefault()}>
+              <motion.div
+                animate={{ filter: 'blur(0px)', opacity: 1, scale: 1, y: 0 }}
+                className="fixed inset-0 z-40 overflow-y-auto"
+                exit={{ filter: 'blur(8px)', opacity: 0, scale: 0.98, y: 4 }}
+                initial={{ filter: 'blur(8px)', opacity: 0, scale: 0.98, y: 4 }}
+                transition={{
+                  damping: 30,
+                  duration: 0.4,
+                  filter: { delay: 0.05 },
+                  stiffness: 200,
+                  type: 'spring',
+                }}
+              >
           <div className="relative mx-auto flex min-h-screen max-w-404 items-center justify-center">
             <Dialog.Close
               asChild
@@ -251,8 +262,11 @@ export function ContactDialog({ isOpen, onClose }: Props) {
               </form>
             </div>
           </div>
-        </Dialog.Content>
-      </Dialog.Portal>
+              </motion.div>
+            </Dialog.Content>
+          </Dialog.Portal>
+        )}
+      </AnimatePresence>
     </Dialog.Root>
   );
 }
