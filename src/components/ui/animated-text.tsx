@@ -21,7 +21,7 @@ export function AnimatedText({ text, className }: AnimatedTextProps) {
 
   return (
     <AnimatePresence mode="popLayout">
-      <motion.span key={text} className={className}>
+      <motion.span className={className} key={text}>
         {text.split('').map((char, index) => {
           const displayChar = char === ' ' ? '\u00A0' : char;
           return (
@@ -49,4 +49,3 @@ export function AnimatedText({ text, className }: AnimatedTextProps) {
     </AnimatePresence>
   );
 }
-

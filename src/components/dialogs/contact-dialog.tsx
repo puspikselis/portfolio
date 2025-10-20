@@ -110,158 +110,167 @@ export function ContactDialog({ isOpen, onClose }: Props) {
                   type: 'spring',
                 }}
               >
-          <div className="relative mx-auto flex min-h-screen max-w-404 items-center justify-center">
-            <Dialog.Close
-              asChild
-              className="absolute inset-shadow-0-1-0 inset-shadow-white/8 top-5 right-5 z-60 h-9 rounded-full bg-nero-100 px-5 font-semibold text-12 text-white hover:bg-nero-200 md:top-8 md:right-12"
-            >
-              <button type="button">Close</button>
-            </Dialog.Close>
-
-            <div className="w-full max-w-136 space-y-12 px-8 py-12">
-              <div className="space-y-2">
-                <Dialog.Title asChild>
-                  <h2 className="-tracking-[0.01em] font-medium text-28/10 text-white">
-                    Get in touch
-                  </h2>
-                </Dialog.Title>
-                <Dialog.Description asChild>
-                  <p className="-tracking-[0.02em] text-15/7 text-nobel-100">
-                    You can reach me by filling out the form below, or directly via email at{' '}
-                    <a
-                      className="text-white transition-opacity hover:opacity-80"
-                      href="mailto:kristaps@kruze.lv"
-                    >
-                      kristaps@kruze.lv
-                    </a>{' '}
-                    or phone{' '}
-                    <a
-                      className="text-white transition-opacity hover:opacity-80"
-                      href="tel:+37129234926"
-                    >
-                      +371 292 34 926
-                    </a>
-                    .
-                  </p>
-                </Dialog.Description>
-              </div>
-
-              <form className="space-y-5" noValidate onSubmit={handleSubmit(onSubmit)}>
-                <div className="flex gap-4">
-                  <div className="flex-1 space-y-2">
-                    <label
-                      className="-tracking-[0.01em] block font-medium text-15 text-white"
-                      htmlFor="name"
-                    >
-                      Name
-                    </label>
-                    <input
-                      id="name"
-                      {...register('name')}
-                      className={inputC}
-                      placeholder="John Doe"
-                      {...(errors.name && {
-                        'aria-describedby': 'name-error',
-                        'aria-invalid': 'true',
-                      })}
-                    />
-                    {errors.name && (
-                      <p className="-tracking-[0.01em] text-12/4 text-red-500" id="name-error">
-                        {errors.name.message}
-                      </p>
-                    )}
-                  </div>
-
-                  <div className="flex-1 space-y-2">
-                    <label
-                      className="-tracking-[0.01em] block font-medium text-15 text-white"
-                      htmlFor="email"
-                    >
-                      Email
-                    </label>
-                    <input
-                      id="email"
-                      type="email"
-                      {...register('email')}
-                      className={inputC}
-                      placeholder="your@email.com"
-                      {...(errors.email && {
-                        'aria-describedby': 'email-error',
-                        'aria-invalid': 'true',
-                      })}
-                    />
-                    {errors.email && (
-                      <p className="-tracking-[0.01em] text-12/4 text-red-500" id="email-error">
-                        {errors.email.message}
-                      </p>
-                    )}
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="flex-1 space-y-2">
-                    <label
-                      className="-tracking-[0.01em] block font-medium text-15 text-white"
-                      htmlFor="phone"
-                    >
-                      Phone # <span className="text-dim-gray-100">(optional)</span>
-                    </label>
-                    <input
-                      id="phone"
-                      type="tel"
-                      {...register('phone')}
-                      className={inputC}
-                      placeholder="+1 (555) 000-0000"
-                    />
-                  </div>
-                  <div className="flex-1" />
-                </div>
-
-                <div className="space-y-2">
-                  <label
-                    className="-tracking-[0.01em] block font-medium text-15 text-white"
-                    htmlFor="message"
+                <div className="relative mx-auto flex min-h-screen max-w-404 items-center justify-center">
+                  <Dialog.Close
+                    asChild
+                    className="absolute inset-shadow-0-1-0 inset-shadow-white/8 top-5 right-5 z-60 h-9 rounded-full bg-nero-100 px-5 font-semibold text-12 text-white hover:bg-nero-200 md:top-8 md:right-12"
                   >
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    {...register('message')}
-                    className={cn(inputC, 'h-auto min-h-24 resize-y')}
-                    placeholder="I'm looking for help with..."
-                    {...(errors.message && {
-                      'aria-describedby': 'message-error',
-                      'aria-invalid': 'true',
-                    })}
-                  />
-                  {errors.message && (
-                    <p className="-tracking-[0.01em] text-12/4 text-red-500" id="message-error">
-                      {errors.message.message}
-                    </p>
-                  )}
+                    <button type="button">Close</button>
+                  </Dialog.Close>
+
+                  <div className="w-full max-w-136 space-y-12 px-8 py-12">
+                    <div className="space-y-2">
+                      <Dialog.Title asChild>
+                        <h2 className="-tracking-[0.01em] font-medium text-28/10 text-white">
+                          Get in touch
+                        </h2>
+                      </Dialog.Title>
+                      <Dialog.Description asChild>
+                        <p className="-tracking-[0.02em] text-15/7 text-nobel-100">
+                          You can reach me by filling out the form below, or directly via email at{' '}
+                          <a
+                            className="text-white transition-opacity hover:opacity-80"
+                            href="mailto:kristaps@kruze.lv"
+                          >
+                            kristaps@kruze.lv
+                          </a>{' '}
+                          or phone{' '}
+                          <a
+                            className="text-white transition-opacity hover:opacity-80"
+                            href="tel:+37129234926"
+                          >
+                            +371 292 34 926
+                          </a>
+                          .
+                        </p>
+                      </Dialog.Description>
+                    </div>
+
+                    <form className="space-y-5" noValidate onSubmit={handleSubmit(onSubmit)}>
+                      <div className="flex gap-4">
+                        <div className="flex-1 space-y-2">
+                          <label
+                            className="-tracking-[0.01em] block font-medium text-15 text-white"
+                            htmlFor="name"
+                          >
+                            Name
+                          </label>
+                          <input
+                            id="name"
+                            {...register('name')}
+                            className={inputC}
+                            placeholder="John Doe"
+                            {...(errors.name && {
+                              'aria-describedby': 'name-error',
+                              'aria-invalid': 'true',
+                            })}
+                          />
+                          {errors.name && (
+                            <p
+                              className="-tracking-[0.01em] text-12/4 text-red-500"
+                              id="name-error"
+                            >
+                              {errors.name.message}
+                            </p>
+                          )}
+                        </div>
+
+                        <div className="flex-1 space-y-2">
+                          <label
+                            className="-tracking-[0.01em] block font-medium text-15 text-white"
+                            htmlFor="email"
+                          >
+                            Email
+                          </label>
+                          <input
+                            id="email"
+                            type="email"
+                            {...register('email')}
+                            className={inputC}
+                            placeholder="your@email.com"
+                            {...(errors.email && {
+                              'aria-describedby': 'email-error',
+                              'aria-invalid': 'true',
+                            })}
+                          />
+                          {errors.email && (
+                            <p
+                              className="-tracking-[0.01em] text-12/4 text-red-500"
+                              id="email-error"
+                            >
+                              {errors.email.message}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="flex gap-4">
+                        <div className="flex-1 space-y-2">
+                          <label
+                            className="-tracking-[0.01em] block font-medium text-15 text-white"
+                            htmlFor="phone"
+                          >
+                            Phone # <span className="text-dim-gray-100">(optional)</span>
+                          </label>
+                          <input
+                            id="phone"
+                            type="tel"
+                            {...register('phone')}
+                            className={inputC}
+                            placeholder="+1 (555) 000-0000"
+                          />
+                        </div>
+                        <div className="flex-1" />
+                      </div>
+
+                      <div className="space-y-2">
+                        <label
+                          className="-tracking-[0.01em] block font-medium text-15 text-white"
+                          htmlFor="message"
+                        >
+                          Message
+                        </label>
+                        <textarea
+                          id="message"
+                          {...register('message')}
+                          className={cn(inputC, 'h-auto min-h-24 resize-y')}
+                          placeholder="I'm looking for help with..."
+                          {...(errors.message && {
+                            'aria-describedby': 'message-error',
+                            'aria-invalid': 'true',
+                          })}
+                        />
+                        {errors.message && (
+                          <p
+                            className="-tracking-[0.01em] text-12/4 text-red-500"
+                            id="message-error"
+                          >
+                            {errors.message.message}
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Honeypot */}
+                      <input
+                        aria-hidden="true"
+                        autoComplete="off"
+                        className="hidden"
+                        name="_honey"
+                        ref={honeyRef}
+                        tabIndex={-1}
+                        type="text"
+                      />
+
+                      <button
+                        className="inset-shadow-0-1-0 inset-shadow-white/8 h-12 rounded-full bg-white px-6 font-semibold text-13/4 text-nero-100 hover:bg-white/90 disabled:cursor-not-allowed disabled:bg-nero-300 disabled:text-dim-gray-100 disabled:opacity-50"
+                        disabled={isSubmitting || !isValid}
+                        type="submit"
+                      >
+                        {isSubmitting ? 'Sending…' : 'Send'}
+                      </button>
+                    </form>
+                  </div>
                 </div>
-
-                {/* Honeypot */}
-                <input
-                  aria-hidden="true"
-                  autoComplete="off"
-                  className="hidden"
-                  name="_honey"
-                  ref={honeyRef}
-                  tabIndex={-1}
-                  type="text"
-                />
-
-                <button
-                  className="inset-shadow-0-1-0 inset-shadow-white/8 h-12 rounded-full bg-white px-6 font-semibold text-13/4 text-nero-100 hover:bg-white/90 disabled:cursor-not-allowed disabled:bg-nero-300 disabled:text-dim-gray-100 disabled:opacity-50"
-                  disabled={isSubmitting || !isValid}
-                  type="submit"
-                >
-                  {isSubmitting ? 'Sending…' : 'Send'}
-                </button>
-              </form>
-            </div>
-          </div>
               </motion.div>
             </Dialog.Content>
           </Dialog.Portal>
