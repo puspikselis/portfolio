@@ -91,7 +91,7 @@ export function Projects({ excludeSlug }: { excludeSlug?: string } = {}) {
     <section
       className="narrow-container space-y-14"
       data-color="var(--color-orange-100)"
-      data-title={excludeSlug ? 'Other projects' : 'Projects'}
+      data-title={excludeSlug ? 'Other positions' : 'Employment history'}
     >
       {filteredProjects.map((project, index) => (
         <ProjectCard isFirst={index === 0} key={project.id} project={project} />
