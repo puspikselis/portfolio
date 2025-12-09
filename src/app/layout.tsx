@@ -13,10 +13,14 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600'] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://kristaps.kruze.lv'),
-  title: 'Kristaps Krūze - Designer',
+  authors: [{ name: 'Kristaps Krūze' }],
+  creator: 'Kristaps Krūze',
   description:
     "Designer turning ideas into products people actually enjoy using. I've built my own businesses and helped clients worldwide create complete digital experiences that look great and work even better.",
+  icons: {
+    apple: '/favicon/apple-icon.png',
+    icon: '/favicon/icon.png',
+  },
   keywords: [
     'Product Designer',
     'UX/UI Design',
@@ -25,38 +29,34 @@ export const metadata: Metadata = {
     'Latvia',
     'Portfolio',
   ],
-  authors: [{ name: 'Kristaps Krūze' }],
-  creator: 'Kristaps Krūze',
+  metadataBase: new URL('https://kristaps.kruze.lv'),
+  openGraph: {
+    description:
+      "Designer turning ideas into products people actually enjoy using. I've built my own businesses and helped clients worldwide create complete digital experiences that look great and work even better.",
+    locale: 'en_US',
+    siteName: 'Kristaps Krūze - Designer',
+    title: 'Kristaps Krūze - Designer',
+    type: 'website',
+    url: 'https://kristaps.kruze.lv',
+  },
   publisher: 'Kristaps Krūze',
   robots: {
-    index: true,
     follow: true,
     googleBot: {
-      index: true,
       follow: true,
-      'max-video-preview': -1,
+      index: true,
       'max-image-preview': 'large',
       'max-snippet': -1,
+      'max-video-preview': -1,
     },
+    index: true,
   },
-  icons: {
-    apple: '/favicon/apple-icon.png',
-    icon: '/favicon/icon.png',
-  },
-  openGraph: {
-    title: 'Kristaps Krūze - Designer',
-    description:
-      "Designer turning ideas into products people actually enjoy using. I've built my own businesses and helped clients worldwide create complete digital experiences that look great and work even better.",
-    url: 'https://kristaps.kruze.lv',
-    siteName: 'Kristaps Krūze - Designer',
-    locale: 'en_US',
-    type: 'website',
-  },
+  title: 'Kristaps Krūze - Designer',
   twitter: {
     card: 'summary_large_image',
-    title: 'Kristaps Krūze - Designer',
     description:
       "Designer turning ideas into products people actually enjoy using. I've built my own businesses and helped clients worldwide create complete digital experiences that look great and work even better.",
+    title: 'Kristaps Krūze - Designer',
   },
 };
 
