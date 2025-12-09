@@ -2,6 +2,21 @@ export const businesses = [
   {
     buttons: [
       {
+        href: 'https://datreal.com',
+        label: 'Website',
+      },
+    ],
+    cardHref: 'https://datreal.com',
+    color: '#025333',
+    id: 3,
+    image: '/images/datreal.svg',
+    tags: ['DatReal', 'Public Business Data'],
+    title: 'Co-founder',
+    year: 'Operating from 2025',
+  },
+  {
+    buttons: [
+      {
         href: 'https://apps.apple.com/lv/app/ai-dating-reimagined-wisp/id6738913963',
         label: 'App Store',
         preview: {

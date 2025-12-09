@@ -45,7 +45,13 @@ function BusinessCard({
   const isCardInteractive = Boolean(business.cardHref);
 
   const handleCardPointerEnter = () => {
-    if (!business.previewOnCardHover || !primaryButton?.preview) return;
+    if (
+      !business.previewOnCardHover ||
+      !primaryButton ||
+      !('preview' in primaryButton) ||
+      !primaryButton.preview
+    )
+      return;
     const { image, width, height } = primaryButton.preview;
     showPreview(previewColor, image, width, height);
   };
@@ -115,7 +121,7 @@ function BusinessCard({
                     className="relative z-10 flex items-center gap-2 [&_svg_path:first-of-type]:group-hover:fill-white [&_svg_path:last-of-type]:group-hover:stroke-black [&_svg_path]:transition-all"
                     href={button.href}
                     onPointerEnter={
-                      button.preview
+                      'preview' in button && button.preview
                         ? () =>
                             showPreview(
                               previewColor,
@@ -126,7 +132,9 @@ function BusinessCard({
                         : undefined
                     }
                     onPointerLeave={
-                      button.preview && !business.previewOnCardHover ? hidePreview : undefined
+                      'preview' in button && button.preview && !business.previewOnCardHover
+                        ? hidePreview
+                        : undefined
                     }
                     rel="noopener noreferrer"
                     target="_blank"
